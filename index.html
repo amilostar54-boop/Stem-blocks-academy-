@@ -2,47 +2,63 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>STEM Blocks Academy - Young Development Project African Ltd</title>
-<meta name="description" content="STEM Blocks Academy by Young Development Project African Ltd. Learn STEM with visual blocks, coding, robotics, and Forex education for African youth.">
-<meta name="keywords" content="STEM Blocks Academy, STEMBlocks Academy, Young Development Project African Ltd, STEM learning Kenya, Bomet STEM, Forex education Africa">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STEM Blocks Academy - Kisii | Young Developers Project African Ltd</title>
 <style>
-body{font-family:Arial;margin:0;background:#f4f6ff}
-header{background:#0d1bce;color:white;padding:25px;text-align:center}
-nav a{color:white;margin:10px;text-decoration:none;font-weight:bold}
-.hero{padding:30px;text-align:center}
-.card{background:white;padding:20px;margin:15px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1)}
-.btn{background:#0d1bce;color:white;padding:12px 25px;border-radius:8px;text-decoration:none;display:inline-block;margin-top:15px}
+body{margin:0;font-family:sans-serif;background:#f8fafc}
+#paywall{position:fixed;top:0;left:0;width:100%;height:100%;background:#0f172a;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+.card{background:white;padding:25px;border-radius:16px;max-width:360px;width:100%;text-align:center}
+.mpesa-box{background:#f0fdf4;border:2px solid #10b981;padding:12px;border-radius:10px;margin:12px 0;text-align:left;font-size:14px}
+.btn{width:100%;padding:14px;background:#2563eb;color:white;border:none;border-radius:10px;font-size:16px;font-weight:bold;margin-top:10px}
+input{width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;margin-top:10px;box-sizing:border-box}
+.content{display:none;padding:20px}
 </style>
 </head>
 <body>
-<header>
-<h1>STEM Blocks Academy</h1>
-<h2>By Young Development Project African Ltd</h2>
-<p>STEMBlocks Academy | Forex Education | Youth Development - Bomet, Kenya</p>
-<nav>
-<a href="index.html">Home</a>
-<a href="stem-learning.html">STEM Learn</a>
-<a href="forex-learning.html">Forex</a>
-</nav>
-</header>
-<div class="hero">
+
+<div id="paywall">
 <div class="card">
-<h2>🧩 STEM Blocks Academy - Official Site</h2>
-<p>Welcome to the official STEM Blocks Academy. We teach Science, Technology, Engineering & Math with Visual Drag & Drop Blocks.</p>
-<p>Search Keywords: STEM Blocks Academy, STEMBlocks Academy, Young Development Project African Ltd</p>
+<h2>🔒 STEM Blocks Academy</h2>
+<p>Official STEM Revision Platform - Bomet Kenya</p>
+<h1 style="color:#2563eb">100 KES</h1>
+<p><b>Lifetime Access</b></p>
+
+<div class="mpesa-box">
+<b>💰 LIPA 100 VIA POCHI:</b><br><br>
+M-Pesa → <b>Send Money</b><br>
+Number: <b style="font-size:22px;color:green">0707905752</b><br>
+Amount: <b>100</b><br><br>
+After paying, WhatsApp M-Pesa code to same number to get unlock code.
 </div>
-<div class="card">
-<h2>📈 Forex Education Africa</h2>
-<p>We train youth in financial markets, risk management, and wealth creation across Africa.</p>
+
+<input id="code" placeholder="Weka Code: STEMKISII100">
+<button class="btn" onclick="unlock()">UNLOCK NOW</button>
+<p style="font-size:11px;margin-top:10px">Already paid? Enter code <b>STEMKISII100</b> or paste M-Pesa code (Q...)</p>
 </div>
-<div class="card">
-<h2>🎯 Our Mission</h2>
-<p>Empowering African youth through technology and financial literacy. Based in Bomet, Kenya.</p>
 </div>
-<a class="btn" href="stem-learning.html">Start Learning STEM Blocks</a>
-<p style="margin-top:30px">Young Development Project African Ltd | Bomet, Kenya</p>
-<p>Website: https://amilostar54-boop.github.io/Stem-blocks-academy-/</p>
+
+<div id="main" class="content">
+<h1>Karibu! Young Development Project African Ltd</h1>
+<h2>STEM Blocks Academy - Official Platform</h2>
+<p>✅ Payment Verified - Access Granted</p>
+<p>--- WEKA MASOMO YAKO HAPA ---</p>
+<p>Example: CBC Coding Lessons, Robotics, etc.</p>
 </div>
+
+<script>
+if(localStorage.getItem('stem_paid_0707905752')==='yes'){
+ document.getElementById('paywall').style.display='none';
+ document.getElementById('main').style.display='block';
+}
+function unlock(){
+ let c=document.getElementById('code').value.trim().toUpperCase();
+ if(c==="STEMKISII100" || c.startsWith("Q") && c.length>=8){
+   localStorage.setItem('stem_paid_0707905752','yes');
+   document.getElementById('paywall').style.display='none';
+   document.getElementById('main').style.display='block';
+   alert("Karibu! Access Granted");
+ } else { alert("Wrong code. Lipa 100 to 0707905752 first. Then use STEMKISII100"); }
+}
+</script>
 </body>
 </html>
