@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>STEM Blocks Academy V3 - FIXED</title>
+<title>STEM Blocks Academy V3 - 100% Working</title>
 <style>
 body{margin:0;font-family:sans-serif;background:#f1f5f9}
-#paywall{position:fixed;top:0;left:0;width:100%;height:100%;background:#0f172a;z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto}
+#paywall{position:fixed;top:0;left:0;width:100%;height:100%;background:#0f172a;z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px}
 .card{background:white;padding:22px;border-radius:16px;max-width:380px;width:100%;text-align:center}
 .mpesa{background:#f0fdf4;border:2px solid #10b981;padding:10px;border-radius:10px;margin:10px 0;text-align:left}
-.btn{width:100%;padding:15px;background:#2563eb;color:white;border:none;border-radius:10px;font-weight:bold;margin-top:8px;font-size:16px}
-.btn2{padding:10px 14px;background:#10b981;color:white;border:none;border-radius:8px;font-weight:bold;margin:4px}
+.btn{width:100%;padding:15px;background:#2563eb;color:white;border:none;border-radius:10px;font-weight:bold;margin-top:8px;font-size:16px;cursor:pointer}
+.btn2{padding:10px 14px;background:#10b981;color:white;border:none;border-radius:8px;font-weight:bold;margin:4px;cursor:pointer}
 input{width:100%;padding:12px;border:2px solid #333;border-radius:8px;margin-top:8px;box-sizing:border-box;font-size:16px}
 .content{max-width:900px;margin:0 auto;padding:10px}
 .header{background:#2563eb;color:white;padding:18px;border-radius:12px;text-align:center;margin-bottom:12px}
 .subj{background:white;padding:16px;border-radius:12px;margin-top:12px;box-shadow:0 2px 6px rgba(0,0,0,.07)}
 .leader{background:#fffbeb;border:2px solid #f59e0b;padding:14px;border-radius:12px;margin-top:12px}
 .quizQ{margin:10px 0;padding:10px;background:#f8fafc;border-radius:8px;border:1px solid #ddd}
-.correct{background:#dcfce7!important;border-color:green}
-.wrong{background:#fee2e2!important;border-color:red}
+.correct{background:#dcfce7!important}
+.wrong{background:#fee2e2!important}
 #main{display:none}
 </style>
 </head>
@@ -28,50 +28,55 @@ input{width:100%;padding:12px;border:2px solid #333;border-radius:8px;margin-top
 <h2>🔒 STEM Blocks Academy V3</h2>
 <p><b>100 KES = All Subjects + Exams + Leaderboard</b></p>
 <div class="mpesa">
-<b>💰 LIPA POCHI:</b><br>
-M-Pesa Send Money<br>
-<b style="font-size:22px;color:green">0707905752</b><br>
-Amount: 100
+<b>💰 LIPA POCHI:</b><br>M-Pesa Send Money<br><b style="font-size:22px;color:green">0707905752</b><br>Amount: 100
 </div>
-<input id="name" placeholder="Jina lako: Abraham nyayiemi" value="Abraham nyayiemi">
-<input id="code" placeholder="Code: STEMKISII100" value="STEMKISII100">
-<button class="btn" onclick="document.getElementById('paywall').style.display='none';document.getElementById('main').style.display='block';localStorage.setItem('stem_paid_0707905752','yes');renderBoard();">UNLOCK & JOIN COMPETITION - TAP HERE</button>
-<p style="font-size:11px;margin-top:10px">Button inafanya kazi 100% - Tap tu!</p>
-<p style="font-size:10px">If not working, click: <a href="#" onclick="document.getElementById('paywall').style.display='none';document.getElementById('main').style.display='block';return false;">Direct Open</a></p>
+<input id="name" placeholder="Jina lako" value="Abraham nyayiemi">
+<input id="code" placeholder="STEMKISII100" value="STEMKISII100">
+<button class="btn" onclick="openSite()">UNLOCK & JOIN - TAP HERE</button>
+<p style="font-size:11px">100% Working - Tap once!</p>
 </div>
 </div>
-
 <div id="main" class="content">
 <div class="header">
 <h1 style="margin:0">🚀 STEM Blocks Academy V3</h1>
 <p>Young Development Project African Ltd</p>
-<p>Karibu <span id="uName">Abraham</span>! - FIXED VERSION</p>
+<p>Karibu <span id="uName">Abraham</span>!</p>
 </div>
-
 <div class="leader">
 <h3>🏆 LIVE Leaderboard - Compete!</h3>
-<div id="board">Loading...</div>
-<p>Your Total Points: <b id="myPts">0</b></p>
+<div id="board"></div>
+<p>Your Points: <b id="myPts">0</b></p>
 </div>
-
 <div class="subj">
-<h3>📐 Subject 1: Mathematics (CBC)</h3>
-<button class="btn2" onclick="openExam('math')">▶️ Learn & Take Exam (10 Marks)</button>
+<h3>📐 Mathematics (CBC)</h3>
+<button class="btn2" onclick="openExam('math')">▶️ Take Exam (Auto-Marked)</button>
 <div id="math-exam" style="display:none"></div>
 </div>
-
 <div class="subj">
-<h3>🔬 Subject 2: Integrated Science</h3>
-<button class="btn2" onclick="openExam('science')">▶️ Learn & Take Exam</button>
+<h3>🔬 Integrated Science</h3>
+<button class="btn2" onclick="openExam('science')">▶️ Take Exam</button>
 <div id="science-exam" style="display:none"></div>
 </div>
-
 <div class="subj">
-<h3>💻 Subject 3: Coding</h3>
-<button class="btn2" onclick="openExam('coding')">▶️ Learn & Take Exam</button>
+<h3>💻 Coding</h3>
+<button class="btn2" onclick="openExam('coding')">▶️ Take Exam</button>
 <div id="coding-exam" style="display:none"></div>
 </div>
-
 <div class="subj">
-<h3>🤖 Subject 4: Robotics</h3>
-<button class="btn2" onclick="openExam('robotics')">▶️ Learn & Take Exam</button
+<h3>🤖 Robotics</h3>
+<button class="btn2" onclick="openExam('robotics')">▶️ Take Exam</button>
+<div id="robotics-exam" style="display:none"></div>
+</div>
+</div>
+<script>
+let myPts=0;
+function openSite(){
+ document.getElementById('paywall').style.display='none';
+ document.getElementById('main').style.display='block';
+ let n=document.getElementById('name').value||'Abraham';
+ document.getElementById('uName').innerText=n;
+ localStorage.setItem('stem_paid','yes');
+ renderBoard();
+}
+const exams={
+ math:{title:"Math Exam",qs:[{q:"12x8=?",o:["96","84","88"],a:0},{q:"Square side 5 area?",o:["10","25","20"],a:1},{q:"2x=10 x=?",o:["5","2","10"],a:0},{q:"Triangle sides?",o:["4","3","5"],a:1},{q:"15% of 200?",o:["30","15","25"],a
