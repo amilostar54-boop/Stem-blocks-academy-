@@ -1,15 +1,43 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name=viewport content="width=device-width,initial-scale=1"><title>STEM G1-12</title><style>body{margin:0;font-family:sans-serif;background:#f1f5f9;padding:8px}h2{background:#2563eb;color:#fff;padding:12px;border-radius:10px;text-align:center}.g{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.gr{padding:20px;background:#fff;border:3px solid #2563eb;border-radius:12px;text-align:center;font-weight:900;font-size:20px;cursor:pointer}.s{background:#fff;padding:12px;border-radius:10px;margin-top:10px}.b{padding:10px;background:#2563eb;color:#fff;border:none;border-radius:8px;font-weight:bold;width:100%}</style></head><body>
-<h2>🎓 STEM Blocks - Kisii/Bomet<br>G1-12 WORKING!</h2>
-<div class=g>
-<div class=gr onclick="sel(1)">G1</div><div class=gr onclick="sel(2)">G2</div><div class=gr onclick="sel(3)">G3</div>
-<div class=gr onclick="sel(4)">G4</div><div class=gr onclick="sel(5)">G5</div><div class=gr onclick="sel(6)">G6</div>
-<div class=gr onclick="sel(7)">G7</div><div class=gr onclick="sel(8)">G8</div><div class=gr onclick="sel(9)">G9</div>
-<div class=gr onclick="sel(10)">G10</div><div class=gr onclick="sel(11)">G11</div><div class=gr onclick="sel(12)">G12</div>
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+body{margin:0;padding:8px;font-family:sans-serif;background:#f1f5f9}
+h2{background:#2563eb;color:#fff;padding:12px;border-radius:10px;text-align:center}
+.g{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.gr{padding:22px;background:#fff;border:3px solid #2563eb;border-radius:14px;text-align:center;font-weight:900;font-size:22px}
+#a{display:none}.s{background:#fff;padding:10px;border-radius:10px;margin-top:10px}
+.b{padding:10px;background:#2563eb;color:#fff;border:none;border-radius:8px;width:100%;font-weight:bold}
+</style>
+<h2>STEM Kisii/Bomet G1-12</h2>
+<div class="g" id="g">
+<div class="gr" onclick="s(1)">G1</div>
+<div class="gr" onclick="s(2)">G2</div>
+<div class="gr" onclick="s(3)">G3</div>
+<div class="gr" onclick="s(4)">G4</div>
+<div class="gr" onclick="s(5)">G5</div>
+<div class="gr" onclick="s(6)">G6</div>
+<div class="gr" onclick="s(7)">G7</div>
+<div class="gr" onclick="s(8)">G8</div>
+<div class="gr" onclick="s(9)">G9</div>
+<div class="gr" onclick="s(10)">G10</div>
+<div class="gr" onclick="s(11)">G11</div>
+<div class="gr" onclick="s(12)">G12</div>
 </div>
-<div id=area style=display:none><button class=b style=background:#64748b onclick="document.getElementById('area').style.display='none';document.getElementById('gg').style.display='grid'">⬅ BACK</button><h3 id=gt></h3><div id=sub></div></div>
-<div id=gg style=display:none></div>
+<div id="a">
+<button class="b" style="background:#64748b" onclick="g.style.display='grid';a.style.display='none'">⬅ BACK</button>
+<h3 id="t"></h3><div id="u"></div>
+</div>
 <script>
-function calc(){let e=prompt('🧮 Calculator - Type 12*8');if(e)try{alert(e+' = '+eval(e))}catch{}}
-function sel(n){document.querySelector('.g').style.display='none';let a=document.getElementById('area');a.style.display='block';document.getElementById('gt').innerText='Grade '+n+' Subjects';let subs=n<=6?['Math','English','Kiswahili','Science']:['Math','English','Bio','Chem','Physics'];let h='';subs.forEach(s=>{h+='<div class=s><b>'+s+' G'+n+'</b> <button onclick="calc()" style=background:#f59e0b;color:#fff;border:none;padding:5px 10px;border-radius:4px>🧮 Calc</button><br><button onclick="alert(\'Exam for '+s+' G'+n+'\\nQ: 12*8=?\\nUse 🧮 Calc!\\n\\nNext: Full exam with auto-mark\')" style=background:#10b981;color:#fff;border:none;padding:8px;border-radius:6px;margin-top:5px;width:100%>Take Exam + Calc + Mark</button></div>'});document.getElementById('sub').innerHTML=h}
+function c(){let e=prompt('🧮 Calculator: 12*8');if(e)alert(e+'='+eval(e))}
+function s(n){
+g.style.display='none';a.style.display='block';
+t.innerText='Grade '+n;
+let m=n<=6?['Math','English','Kiswahili','Science']:['Math','Eng','Bio','Chem','Physics'];
+let h='';
+m.forEach(x=>{
+h+='<div class=s><b>'+x+' G'+n+'</b> <button onclick=c() style=background:#f59e0b;color:#fff;border:none;padding:4px 10px;border-radius:4px>🧮 Calc</button><br><button class=b style=background:#10b981;margin-top:6px>Exam + Mark</button></div>'
+});
+u.innerHTML=h
+}
 </script>
-</body></html>
