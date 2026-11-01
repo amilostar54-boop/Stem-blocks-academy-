@@ -1,43 +1,154 @@
 <!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STEM CBC Strands</title>
 <style>
-body{margin:0;padding:8px;font-family:sans-serif;background:#f1f5f9}
-h2{background:#2563eb;color:#fff;padding:12px;border-radius:10px;text-align:center}
+body{margin:0;padding:8px;font-family:sans-serif;background:#eef2ff}
+h2{background:#1e40af;color:#fff;padding:14px;border-radius:12px;text-align:center}
 .g{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.gr{padding:22px;background:#fff;border:3px solid #2563eb;border-radius:14px;text-align:center;font-weight:900;font-size:22px}
-#a{display:none}.s{background:#fff;padding:10px;border-radius:10px;margin-top:10px}
-.b{padding:10px;background:#2563eb;color:#fff;border:none;border-radius:8px;width:100%;font-weight:bold}
+.gr{padding:22px;background:#fff;border:3px solid #1e40af;border-radius:14px;text-align:center;font-weight:900;font-size:22px}
+.card{background:#fff;padding:12px;border-radius:12px;margin:8px 0;box-shadow:0 2px 6px #0001}
+.btn{padding:10px;background:#2563eb;color:#fff;border:none;border-radius:8px;width:100%;font-weight:bold;margin-top:6px}
+.btn2{background:#10b981}
+.btnO{background:#f59e0b;color:#fff;border:none;padding:4px 10px;border-radius:6px}
+.back{background:#64748b;padding:10px;border-radius:8px;color:#fff;border:none;width:100%;font-weight:bold}
+h3{margin:8px 0}
+.small{color:#64748b;font-size:13px}
 </style>
-<h2>STEM Kisii/Bomet G1-12</h2>
-<div class="g" id="g">
-<div class="gr" onclick="s(1)">G1</div>
-<div class="gr" onclick="s(2)">G2</div>
-<div class="gr" onclick="s(3)">G3</div>
-<div class="gr" onclick="s(4)">G4</div>
-<div class="gr" onclick="s(5)">G5</div>
-<div class="gr" onclick="s(6)">G6</div>
-<div class="gr" onclick="s(7)">G7</div>
-<div class="gr" onclick="s(8)">G8</div>
-<div class="gr" onclick="s(9)">G9</div>
-<div class="gr" onclick="s(10)">G10</div>
-<div class="gr" onclick="s(11)">G11</div>
-<div class="gr" onclick="s(12)">G12</div>
+<h2>🎓 STEM Blocks Academy<br>Kisii/Bomet - CBC G1-12</h2>
+
+<div id="lvl0" class="g">
+<div class="gr" onclick="openGrade(1)">G1</div>
+<div class="gr" onclick="openGrade(2)">G2</div>
+<div class="gr" onclick="openGrade(3)">G3</div>
+<div class="gr" onclick="openGrade(4)">G4</div>
+<div class="gr" onclick="openGrade(5)">G5</div>
+<div class="gr" onclick="openGrade(6)">G6</div>
+<div class="gr" onclick="openGrade(7)">G7</div>
+<div class="gr" onclick="openGrade(8)">G8</div>
+<div class="gr" onclick="openGrade(9)">G9</div>
+<div class="gr" onclick="openGrade(10)">G10</div>
+<div class="gr" onclick="openGrade(11)">G11</div>
+<div class="gr" onclick="openGrade(12)">G12</div>
 </div>
-<div id="a">
-<button class="b" style="background:#64748b" onclick="g.style.display='grid';a.style.display='none'">⬅ BACK</button>
-<h3 id="t"></h3><div id="u"></div>
+
+<div id="lvl1" style="display:none">
+<button class="back" onclick="show(0)">⬅ BACK TO GRADES</button>
+<h3 id="t1"></h3>
+<div id="c1"></div>
 </div>
+
+<div id="lvl2" style="display:none">
+<button class="back" onclick="show(1)">⬅ BACK TO SUBJECTS</button>
+<h3 id="t2"></h3>
+<div id="c2"></div>
+</div>
+
+<div id="lvl3" style="display:none">
+<button class="back" onclick="show(2)">⬅ BACK TO STRANDS</button>
+<h3 id="t3"></h3>
+<div id="c3"></div>
+</div>
+
 <script>
-function c(){let e=prompt('🧮 Calculator: 12*8');if(e)alert(e+'='+eval(e))}
-function s(n){
-g.style.display='none';a.style.display='block';
-t.innerText='Grade '+n;
-let m=n<=6?['Math','English','Kiswahili','Science']:['Math','Eng','Bio','Chem','Physics'];
-let h='';
-m.forEach(x=>{
-h+='<div class=s><b>'+x+' G'+n+'</b> <button onclick=c() style=background:#f59e0b;color:#fff;border:none;padding:4px 10px;border-radius:4px>🧮 Calc</button><br><button class=b style=background:#10b981;margin-top:6px>Exam + Mark</button></div>'
-});
-u.innerHTML=h
+let curG=0, curSub="", curStrand="";
+const CBC={
+"Math":{
+strands:{
+"Numbers":{"sub":["Whole Numbers","Fractions","Decimals","Percentages","Integers"]},
+"Algebra":{"sub":["Linear Equations","Inequalities","Sequences"]},
+"Geometry":{"sub":["Angles","Triangles","Circles","3D Shapes"]},
+"Measurement":{"sub":["Length, Area, Volume","Time, Speed","Money"]},
+"Data":{"sub":["Statistics","Probability","Graphs"]}
+}},
+"English":{
+strands:{
+"Listening":{"sub":["Pronunciation","Comprehension"]},
+"Reading":{"sub":["Intensive Reading","Fluency","Grammar in Use"]},
+"Writing":{"sub":["Creative Writing","Functional Writing"]},
+"Speaking":{"sub":["Oral Narratives","Debates"]}
+}},
+"Science":{
+strands:{
+"Living Things":{"sub":["Plants","Animals","Human Body"]},
+"Matter":{"sub":["States of Matter","Mixtures","Acids & Bases"]},
+"Energy":{"sub":["Heat, Light, Sound","Electricity","Magnetism"]},
+"Environment":{"sub":["Weather, Climate","Conservation"]}
+}},
+"Bio":{
+strands:{
+"Cell Biology":{"sub":["Cell Structure","Cell Division"]},
+"Genetics":{"sub":["Inheritance","Variation"]},
+"Ecology":{"sub":["Ecosystem","Pollution","Conservation"]}
+}},
+"Chem":{
+strands:{
+"Structure":{"sub":["Atomic Structure","Periodic Table"]},
+"Bonding":{"sub":["Chemical Bonds","Molecules"]},
+"Reactions":{"sub":["Acids, Bases, Salts","Redox"]},
+"Organic":{"sub":["Hydrocarbons","Polymers"]}
+}},
+"Physics":{
+strands:{
+"Mechanics":{"sub":["Motion","Force","Energy","Pressure"]},
+"Waves":{"sub":["Sound Waves","Light Waves"]},
+"Electricity":{"sub":["Current, Voltage","Magnetism"]}
+}}
+};
+
+function show(l){
+document.getElementById('lvl0').style.display=l==0?'grid':'none';
+document.getElementById('lvl1').style.display=l==1?'block':'none';
+document.getElementById('lvl2').style.display=l==2?'block':'none';
+document.getElementById('lvl3').style.display=l==3?'block':'none';
 }
-</script>
+function calc(){let e=prompt('🧮 Calculator\nType: 12*8 or 100/4'); if(e)try{alert(e+' = '+eval(e))}catch{alert('Error, try like 12*8')}}
+
+function openGrade(n){
+curG=n; show(1);
+document.getElementById('t1').innerText='Grade '+n+' - Subjects (CBC)';
+let subs=n<=6?['Math','English','Science','Kiswahili']:n<=9?['Math','English','Bio','Chem','Physics','Kiswahili']:['Math','Bio','Chem','Physics','English'];
+let h='';
+subs.forEach(s=>{
+let key=s=='Science'?'Science':['Math','English','Bio','Chem','Physics'].includes(s)?s:'Math';
+let sc=CBC[key]?Object.keys(CBC[key].strands).length:4;
+h+='<div class=card><b>'+s+' G'+n+'</b> <span class=small>- '+sc+' Strands - CBC</span> <button class=btnO onclick=calc()>🧮 Calc</button><br><button class="btn btn2" onclick="openSubject(\''+s+'\')">Open → Strands & Substrands</button></div>';
+});
+document.getElementById('c1').innerHTML=h;
+}
+
+function openSubject(sub){
+curSub=sub; show(2);
+let key=['Math','English','Bio','Chem','Physics','Science'].includes(sub)?sub:'Math';
+if(sub=='Kiswahili')key='English';
+document.getElementById('t2').innerText=sub+' G'+curG+' - Strands (CBC)';
+let strands=CBC[key]?CBC[key].strands:{"Strand 1":{sub:["Topic A","Topic B"]}};
+let h='';
+Object.keys(strands).forEach(st=>{
+let cnt=strands[st].sub.length;
+h+='<div class=card><b>📌 '+st+'</b> <span class=small>('+cnt+' Substrands)</span> <button class=btnO onclick=calc()>🧮 Calc</button><br><button class=btn onclick="openStrand(\''+st.replace(/'/g,"\\'")+'\',\''+key+'\')">Open → '+cnt+' Substrands → Exams</button></div>';
+});
+document.getElementById('c2').innerHTML=h;
+}
+
+function openStrand(st,key){
+curStrand=st; show(3);
+document.getElementById('t3').innerText=curSub+' G'+curG+' → '+st+' → Substrands';
+let subs=CBC[key].strands[st].sub;
+let h='';
+subs.forEach(ss=>{
+h+='<div class=card><b>📚 '+ss+'</b><br><span class=small>Strand: '+st+' | '+curSub+' G'+curG+'</span><br><button class=btnO onclick=calc()>🧮 Calc Inside</button> <button class="btn btn2" onclick="doExam(\''+ss.replace(/'/g,"\\'")+'\')">📝 Take Exam + Calc + Auto-Mark</button><button class=btn style=background:#8b5cf6;margin-top:4px onclick="alert(\'📖 Lesson: '+ss+'\\n\\n1. Definition\\n2. Examples\\n3. Practice\\n\\nNext: Video + Notes + CBC Assessment\')">📖 View Lesson Notes</button></div>';
+});
+document.getElementById('c3').innerHTML=h;
+}
+
+function doExam(topic){
+let q=curSub=='Math'?'Q: 12 × 8 = ?':'Q: What is main idea of '+topic+'?';
+let a=prompt('📝 EXAM - '+topic+' (G'+curG+')\n\n'+q+'\n\nUse 🧮 Calc button if Math!\n\nType your answer:');
+if(a!=null){
+if(curSub=='Math'&&a.trim()=='96'){alert('✅ CORRECT! 12×8=96\n\nScore: 10/10\n\nNext: Substrand '+topic+' Completed!');}
+else if(a.trim()!=''){alert('✅ Submitted: '+a+'\n\nTeacher will mark!\n\nSubstrand: '+topic+'\nGrade: '+curG+'\n\nNext: Auto-mark + Progress');}
+calc();
+}
+}
+  </script>
