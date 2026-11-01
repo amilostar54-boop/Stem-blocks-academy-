@@ -3,94 +3,104 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>STEM Blocks Academy - Kisii | Young Development Project</title>
+<title>STEM Blocks Academy V2 - Exam + Leaderboard</title>
 <style>
-body{margin:0;font-family:sans-serif;background:#f8fafc}
-#paywall{position:fixed;top:0;left:0;width:100%;height:100%;background:#0f172a;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
-.card{background:white;padding:25px;border-radius:16px;max-width:360px;width:100%;text-align:center}
-.mpesa-box{background:#f0fdf4;border:2px solid #10b981;padding:12px;border-radius:10px;margin:12px 0;text-align:left;font-size:14px}
-.btn{width:100%;padding:14px;background:#2563eb;color:white;border:none;border-radius:10px;font-size:16px;font-weight:bold;margin-top:10px}
-input{width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;margin-top:10px;box-sizing:border-box}
-.content{display:none;padding:15px;max-width:800px;margin:0 auto}
-.lesson{background:white;padding:18px;border-radius:12px;margin-top:12px;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
-.header{background:#2563eb;color:white;padding:20px;text-align:center}
+body{margin:0;font-family:sans-serif;background:#f1f5f9}
+#paywall{position:fixed;inset:0;background:#0f172a;z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px}
+.card{background:white;padding:22px;border-radius:16px;max-width:380px;width:100%;text-align:center}
+.mpesa{background:#f0fdf4;border:2px solid #10b981;padding:10px;border-radius:10px;margin:10px 0;text-align:left}
+.btn{width:100%;padding:13px;background:#2563eb;color:white;border:none;border-radius:10px;font-weight:bold;margin-top:8px}
+.btn2{padding:10px 14px;background:#10b981;color:white;border:none;border-radius:8px;font-weight:bold}
+input,select{width:100%;padding:11px;border:2px solid #ddd;border-radius:8px;margin-top:8px;box-sizing:border-box}
+.content{display:none;max-width:900px;margin:0 auto;padding:10px}
+.header{background:#2563eb;color:white;padding:18px;border-radius:12px;text-align:center;margin-bottom:12px}
+.subj{background:white;padding:16px;border-radius:12px;margin-top:12px;box-shadow:0 2px 6px rgba(0,0,0,.07)}
+.leader{background:#fffbeb;border:2px solid #f59e0b;padding:14px;border-radius:12px;margin-top:12px}
+.quizQ{margin:10px 0;padding:10px;background:#f8fafc;border-radius:8px}
+.correct{background:#dcfce7} .wrong{background:#fee2e2}
 </style>
 </head>
 <body>
-
 <div id="paywall">
 <div class="card">
-<h2>🔒 STEM Blocks Academy</h2>
-<p>Official STEM Revision Platform - Bomet Kenya</p>
-<h1 style="color:#2563eb">100 KES</h1>
-<p><b>Lifetime Access</b></p>
-<div class="mpesa-box">
-<b>💰 LIPA 100 VIA POCHI:</b><br><br>
-M-Pesa → <b>Send Money</b><br>
-Number: <b style="font-size:22px;color:green">0707905752</b><br>
-Amount: <b>100</b><br><br>
-After paying, WhatsApp M-Pesa code to same number.
+<h2>🔒 STEM Blocks Academy V2</h2>
+<p><b>100 KES = All Subjects + Exams + Leaderboard</b></p>
+<div class="mpesa">
+<b>💰 LIPA POCHI:</b><br>
+M-Pesa Send Money<br>
+<b style="font-size:20px;color:green">0707905752</b><br>
+Amount: 100<br>
 </div>
-<input id="code" placeholder="Weka Code: STEMKISII100">
-<button class="btn" onclick="unlock()">UNLOCK NOW</button>
-<p style="font-size:11px">Enter <b>STEMKISII100</b> or M-Pesa code (Q...)</p>
+<input id="name" placeholder="Jina lako (for Leaderboard)">
+<input id="code" placeholder="Code: STEMKISII100">
+<button class="btn" onclick="unlock()">UNLOCK & JOIN COMPETITION</button>
+<p style="font-size:11px">Lipa then use STEMKISII100 or M-Pesa Q-code</p>
 </div>
 </div>
 
 <div id="main" class="content">
 <div class="header">
-<h1 style="margin:0">🚀 STEM Blocks Academy</h1>
+<h1 style="margin:0">🚀 STEM Blocks Academy V2</h1>
 <p>Young Development Project African Ltd - Kisii / Bomet</p>
-<p>✅ Paid Access - Asante!</p>
+<p id="welcome">Karibu!</p>
 </div>
 
-<div class="lesson">
-<h3>📚 Module 1: Scratch Coding (Grade 4-6)</h3>
-<p><b>Lesson 1:</b> What is Coding? Create Sprite</p>
-<p><b>Lesson 2:</b> Motion Blocks - Make Cat Move</p>
-<p><b>Lesson 3:</b> Build Your First Game</p>
-<button class="btn">▶️ Start Lesson</button>
+<div class="leader">
+<h3 style="margin:0">🏆 LIVE Leaderboard - Compete!</h3>
+<p style="font-size:12px">Top learners this week - Exam marks</p>
+<div id="board"></div>
+<p style="font-size:12px">Your Total Points: <b id="myPts">0</b></p>
 </div>
 
-<div class="lesson">
-<h3>🤖 Module 2: Robotics & Arduino</h3>
-<p><b>Lesson 1:</b> What is Robotics?</p>
-<p><b>Lesson 2:</b> Blink LED with Arduino</p>
-<p><b>Lesson 3:</b> Build Line Follower</p>
-<button class="btn">▶️ Start Lesson</button>
+<div class="subj">
+<h3>📐 Subject 1: Mathematics (CBC Grade 7-9)</h3>
+<p>Learn: Algebra, Geometry</p>
+<button class="btn2" onclick="openExam('math')">▶️ Learn & Take Exam (10 Marks)</button>
+<div id="math-exam" style="display:none"></div>
 </div>
 
-<div class="lesson">
-<h3>🐍 Module 3: Python for CBC (Grade 7-9)</h3>
-<p><b>Lesson 1:</b> Python Basics</p>
-<p><b>Lesson 2:</b> Calculator Project</p>
-<p><b>Lesson 3:</b> Build Quiz App</p>
-<button class="btn">▶️ Start Lesson</button>
+<div class="subj">
+<h3>🔬 Subject 2: Integrated Science</h3>
+<p>Learn: Human Body, Electricity</p>
+<button class="btn2" onclick="openExam('science')">▶️ Learn & Take Exam (10 Marks)</button>
+<div id="science-exam" style="display:none"></div>
 </div>
 
-<div class="lesson">
-<h3>📝 Module 4: CBC Exam Revision</h3>
-<p>Past papers, Notes, Practicals</p>
-<button class="btn">📥 Download Notes</button>
+<div class="subj">
+<h3>💻 Subject 3: Coding - Scratch & Python</h3>
+<p>Learn: Loops, Conditions, Build Game</p>
+<button class="btn2" onclick="openExam('coding')">▶️ Learn & Take Exam (10 Marks)</button>
+<div id="coding-exam" style="display:none"></div>
 </div>
 
-<p style="text-align:center;margin-top:20px">Support: 0707905752 | bit.ly/stem-academy-kisii</p>
-<button onclick="localStorage.removeItem('stem_paid_0707905752');location.reload()" style="padding:8px">Logout Test</button>
+<div class="subj">
+<h3>🤖 Subject 4: Robotics & Arduino</h3>
+<p>Learn: Sensors, Blink LED</p>
+<button class="btn2" onclick="openExam('robotics')">▶️ Learn & Take Exam (10 Marks)</button>
+<div id="robotics-exam" style="display:none"></div>
+</div>
+
+<div style="text-align:center;margin:16px">
+<button class="btn" onclick="resetMe()">Reset My Scores</button>
+<p>Support: 0707905752 | Share: amilostar54-boop.github.io/Stem-blocks-academy-/</p>
+</div>
 </div>
 
 <script>
-if(localStorage.getItem('stem_paid_0707905752')==='yes'){
- document.getElementById('paywall').style.display='none';
- document.getElementById('main').style.display='block';
-}
+const exams={
+ math:{title:"Mathematics Exam",qs:[{q:"What is 12 x 8?",o:["96","84","88"],a:0},{q:"Area of square side 5?",o:["10","25","20"],a:1},{q:"Solve: 2x=10, x=?",o:["5","2","10"],a:0},{q:"Triangle has how many sides?",o:["4","3","5"],a:1},{q:"15% of 200?",o:["30","15","25"],a:0}]},
+ science:{title:"Science Exam",qs:[{q:"Heart pumps?",o:["Blood","Water","Air"],a:0},{q:"Electricity unit?",o:["Volt","Kg","Meter"],a:0},{q:"Plant makes food by?",o:["Photosynthesis","Respiration","Digestion"],a:0},{q:"Which is conductor?",o:["Copper","Plastic","Wood"],a:0},{q:"Oxygen needed for?",o:["Breathing","Seeing","Hearing"],a:0}]},
+ coding:{title:"Coding Exam",qs:[{q:"Scratch block for move?",o:["move 10 steps","go 10","walk"],a:0},{q:"Loop means?",o:["Repeat","Stop","Delete"],a:0},{q:"In Python, print() does?",o:["Show output","Delete file","Error"],a:0},{q:"Condition uses?",o:["if","for","print"],a:0},{q:"Bug in code means?",o:["Error","Success","Game"],a:0}]},
+ robotics:{title:"Robotics Exam",qs:[{q:"Arduino is?",o:["Microcontroller","Game","Phone"],a:0},{q:"LED stands for?",o:["Light Emitting Diode","Low Energy Device","Light Energy"],a:0},{q:"Sensor does?",o:["Detect","Cook","Fly"],a:0},{q:"Robot brain is?",o:["Microcontroller","Battery","Wheel"],a:0},{q:"Servo controls?",o:["Motion","Sound","Light"],a:0}]}
+};
+let myName=localStorage.getItem('stem_name')||""; 
+let myPts=parseInt(localStorage.getItem('stem_pts')||"0");
+let isPaid=localStorage.getItem('stem_paid_0707905752')==='yes';
+
+if(isPaid){document.getElementById('paywall').style.display='none';document.getElementById('main').style.display='block';document.getElementById('welcome').innerText="Karibu "+myName+"! Points: "+myPts;document.getElementById('myPts').innerText=myPts;renderBoard();}
+
 function unlock(){
  let c=document.getElementById('code').value.trim().toUpperCase();
+ let n=document.getElementById('name').value.trim()||"Learner";
  if(c==="STEMKISII100" || (c.startsWith("Q") && c.length>=8)){
-   localStorage.setItem('stem_paid_0707905752','yes');
-   document.getElementById('paywall').style.display='none';
-   document.getElementById('main').style.display='block';
- } else { alert("Wrong code. Lipa 100 to 0707905752 first"); }
-}
-</script>
-</body>
-</html>
+ 
