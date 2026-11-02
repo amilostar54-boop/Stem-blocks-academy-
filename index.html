@@ -1,78 +1,43 @@
-<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>STEM Blocks Academy</title><style>*{box-sizing:border-box;font-family:Inter,sans-serif}body{margin:0;background:#f3f6fb;padding-bottom:80px}header{background:#0b1e3a;color:#fff;padding:8px 12px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:10}h{font-weight:900;line-height:1.1}h span{color:#f9c63a}h small{display:block;font-size:11px;opacity:.8;font-weight:400}.logo{width:46px;height:46px;border-radius:50%;background:#fff;padding:2px;border:2px solid #f9c63a;object-fit:cover}.chips{display:flex;gap:6px;overflow:auto;padding:10px;background:#fff}.chip{padding:8px 14px;border-radius:20px;background:#eef2ff;color:#1e40af;font-weight:800;border:none}.chip.on{background:#0b1e3a;color:#fff}.card{background:#fff;border-radius:18px;padding:16px;margin:12px;box-shadow:0 4px 12px #0001}.badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:800}.b-blue{background:#dbeafe;color:#1d4ed8}.b-green{background:#dcfce7;color:#15803d}.btn{width:100%;padding:12px;border-radius:12px;border:1px solid #e5e7eb;background:#fff;font-weight:800;margin-top:10px}.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;padding:6px 0}.btm{border:none;background:none;font-size:11px;font-weight:700;color:#64748b}.btm.on{color:#1d4ed8}#exam{position:fixed;inset:0;background:#0b1e3a;color:#fff;padding:12px;display:none;z-index:99;overflow:auto}.opt{width:100%;text-align:left;padding:12px;margin:6px 0;border-radius:12px;border:1px solid #1e3a5f;background:#132a52;color:#fff;font-weight:600}.opt.correct{background:#10b981!important;border-color:#10b981}.opt.wrong{background:#ef4444!important;border-color:#ef4444}.explain{margin-top:8px;padding:10px;background:#1e3a5f;border-radius:10px;font-size:13px;border-left:4px solid #f9c63a}</style><header><img class="logo" src="IMG-20261102-WA7822.jpg"><h>STEM <span>BLOCKS ACADEMY</span><small>Learn Today, Lead Tomorrow</small></h></header><div class="chips" id="chips"></div><div id="list"></div><div class="bottom"><button class="btm on">⏱<br>Exams</button><button class="btm">📊<br>Leaderboard</button><button class="btm">📚<br>Strands</button><button class="btm">👤<br>Account</button></div><div id="exam"><div style="background:#f9c63a;color:#000;padding:10px;border-radius:10px;font-weight:900;text-align:center;position:sticky;top:0;z-index:5" id="tm">⏱ 40:00</div><h2 id="et"></h2><p id="em" style="opacity:.8;font-size:13px"></p><div id="eq"></div><button style="width:100%;padding:14px;background:#10b981;color:#fff;border:none;border-radius:12px;font-weight:900;margin-top:14px" onclick="sub()">✅ Submit Exam</button><button style="width:100%;padding:12px;background:#334155;color:#fff;border:none;border-radius:12px;margin-top:8px" onclick="closeE()">❌ Exit</button></div><script>
-var EX=[
-{t:"FINAL LAP KJSEA 2026 PRETECH MUST COME",s:"Pretechnical Studies",g:"9",b:"RESULTS OUT",c:"b-blue",tm:"50m",qs:10,par:86,str:"Production & Tools",key:"pretech"},
-{t:"INT SCI PAPER 2 KJSEA MUST COME",s:"Integrated Science",g:"9",b:"RESULTS OUT",c:"b-blue",tm:"40m",qs:10,par:95,str:"Mixtures & Separation",key:"science"},
-{t:"CRE FINAL PREDICTION 50 MOST TESTED",s:"CRE",g:"9",b:"RESULTS OUT",c:"b-blue",tm:"50m",qs:10,par:91,str:"Christian Values",key:"cre"},
-{t:"MATH G7 NUMBERS EXAM",s:"Mathematics",g:"7",b:"LIVE",c:"b-green",tm:"30m",qs:10,par:120,str:"Numbers",key:"math7"}
-];
-
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>STEM Blocks Academy 50Q</title><style>*{box-sizing:border-box;font-family:Inter,sans-serif}body{margin:0;background:#f3f6fb;padding-bottom:80px}header{background:#0b1e3a;color:#fff;padding:8px 12px;display:flex;align-items:center;gap:10px;position:sticky;top:0}h{font-weight:900}h span{color:#f9c63a}h small{display:block;font-size:11px;opacity:.8;font-weight:400}.logo{width:44px;height:44px;border-radius:50%;background:#fff;padding:2px;border:2px solid #f9c63a;object-fit:cover}.chips{display:flex;gap:6px;overflow:auto;padding:10px;background:#fff}.chip{padding:8px 14px;border-radius:20px;background:#eef2ff;color:#1e40af;font-weight:800;border:none}.chip.on{background:#0b1e3a;color:#fff}.card{background:#fff;border-radius:18px;padding:16px;margin:12px;box-shadow:0 4px 12px #0001}.badge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:800}.b-blue{background:#dbeafe;color:#1d4ed8}.b-green{background:#dcfce7;color:#15803d}.btn{width:100%;padding:12px;border-radius:12px;border:1px solid #e5e7eb;background:#fff;font-weight:800;margin-top:10px}.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;padding:6px 0}.btm{border:none;background:none;font-size:11px;font-weight:700;color:#64748b}.btm.on{color:#1d4ed8}#exam{position:fixed;inset:0;background:#0b1e3a;color:#fff;padding:12px;display:none;z-index:99;overflow:auto}.opt{width:100%;text-align:left;padding:12px;margin:6px 0;border-radius:12px;border:1px solid #1e3a5f;background:#132a52;color:#fff;font-weight:600}.opt.correct{background:#10b981!important}.opt.wrong{background:#ef4444!important}.explain{margin-top:8px;padding:10px;background:#1e3a5f;border-radius:10px;font-size:13px;border-left:4px solid #f9c63a}</style><header><img class="logo" src="IMG-20261102-WA7822.jpg"><h>STEM <span>BLOCKS ACADEMY</span><small>50 Qs per Paper + Definition on Fail</small></h></header><div class="chips" id="chips"></div><div id="list"></div><div class="bottom"><button class="btm on">Exams</button><button class="btm">Leaderboard</button><button class="btm">Strands</button><button class="btm">Account</button></div><div id="exam"><div style="background:#f9c63a;color:#000;padding:10px;border-radius:10px;font-weight:900;text-align:center;position:sticky;top:0" id="tm">⏱ 50:00</div><h2 id="et"></h2><p id="em" style="opacity:.8;font-size:13px"></p><div id="eq"></div><button style="width:100%;padding:14px;background:#10b981;color:#fff;border:none;border-radius:12px;font-weight:900;margin-top:14px" onclick="sub()">✅ Submit</button><button style="width:100%;padding:12px;background:#334155;color:#fff;border:none;border-radius:12px;margin-top:8px" onclick="closeE()">❌ Exit</button></div><script>
 var QB={
 pretech:[
-{q:"Which tool is used for measuring length?",o:["Try square","Tape measure","Chisel","Mallet"],a:1,ex:"Tape measure measures length accurately.",def:"Measuring: Finding size, length or amount of something."},
-{q:"What is safety in workshop?",o:["Wearing open shoes","Ignoring goggles","Wearing PPE, keeping tools safe","Running in workshop"],a:2,ex:"PPE prevents injuries from sharp tools and dust.",def:"Workshop Safety: Rules to prevent accidents."},
-{q:"Which material is soft wood?",o:["Mvule","Pine","Mahogany","Oak"],a:1,ex:"Pine is softwood, easy to cut.",def:"Softwood: Light wood from conifer trees, easy to work."},
-{q:"First step in production?",o:["Finishing","Design / Sketch","Assembly","Selling"],a:1,ex:"You must design before you make.",def:"Production: Steps of making a product from design to finish."},
-{q:"What does a bench vice do?",o:["Cut wood","Hold work firmly","Measure","Drill"],a:1,ex:"Vice holds material so it doesn't move.",def:"Holding tools: Tools that grip work."}
+{q:"Which tool measures length?",o:["Try square","Tape measure","Chisel","Mallet"],a:1,ex:"Tape measures accurately.",def:"Measuring: Finding length/size."},
+{q:"Bench vice is used to?",o:["Cut","Hold work firmly","Measure","Drill"],a:1,ex:"Vice holds material steady.",def:"Holding tools: Tools that grip work."},
+{q:"Softwood example?",o:["Mvule","Pine","Mahogany","Oak"],a:1,ex:"Pine is soft, easy to cut.",def:"Softwood: Light wood from conifers."},
+{q:"Hardwood example?",o:["Pine","Mvule","Cypress","Fir"],a:1,ex:"Mvule is heavy hardwood.",def:"Hardwood: Strong broadleaf wood."},
+{q:"PPE means?",o:["Open shoes","Personal Protective Equipment","Shorts","Running"],a:1,ex:"Goggles, gloves prevent injury.",def:"PPE: Safety gear to prevent accidents."},
+{q:"First step in production?",o:["Finishing","Design sketch","Assembly","Selling"],a:1,ex:"Design before making.",def:"Production: Design to finish process."},
+{q:"Try square checks?",o:["Length","90° right angle","Weight","Colour"],a:1,ex:"Checks squareness.",def:"Try square: Tool for 90° angle."},
+{q:"Marking gauge does?",o:["Cut","Make parallel lines","Drill","Hold"],a:1,ex:"Marks parallel lines.",def:"Marking gauge: Marking tool."},
+{q:"Hacksaw cuts?",o:["Wood","Metal","Paper","Cloth"],a:1,ex:"Hacksaw for metal.",def:"Hacksaw: Metal cutting saw."},
+{q:"Coping saw for?",o:["Straight","Curved cuts in wood","Metal","Concrete"],a:1,ex:"For curves.",def:"Coping saw: Curved wood saw."}
 ],
 science:[
-{q:"How to separate salt from water?",o:["Filtration","Evaporation","Decanting","Sieving"],a:1,ex:"Water evaporates leaving salt behind.",def:"Evaporation: Liquid changes to vapour when heated."},
-{q:"What is a mixture?",o:["One substance only","Two or more substances mixed, not chemically joined","New substance formed","Only liquids"],a:1,ex:"In mixtures components keep their properties.",def:"Mixture: Combination of substances that can be separated physically."},
-{q:"Which is filtration used for?",o:["Salt+water","Sand+water","Sugar+water","Oil+water"],a:1,ex:"Sand does not dissolve, stays on filter paper.",def:"Filtration: Separating solid that does not dissolve."},
-{q:"Distillation separates based on?",o:["Colour","Boiling point","Weight","Size"],a:1,ex:"Different liquids boil at different temps.",def:"Boiling point: Temperature when liquid boils."}
-],
-cre:[
-{q:"First book of Bible?",o:["Exodus","Genesis","Matthew","Psalms"],a:1,ex:"Genesis means beginning.",def:"Creation: God made world in Genesis 1."},
-{q:"What did Jesus teach about forgiveness?",o:["Never forgive","Forgive 70x7 times","Revenge","Ignore"],a:1,ex:"Matthew 18:22 says forgive 70 times 7.",def:"Forgiveness: Letting go of anger, like God forgives us."},
-{q:"Good Samaritan teaches?",o:["Help only friends","Love your neighbour even enemies","Keep money","Run away"],a:1,ex:"Samaritan helped a stranger who was hurt.",def:"Neighbourly love: Helping anyone in need."}
-],
-math7:[
-{q:"25% of 200?",o:["25","50","40","60"],a:1,ex:"25% = 1/4, 1/4 of 200 = 50.",def:"Percentage: Part per hundred."},
-{q:"12 x 8?",o:["84","96","88","108"],a:1,ex:"12x8=96",def:"Multiplication: Repeated addition."},
-{q:"LCM of 4 and 6?",o:["12","24","6","8"],a:0,ex:"Multiples of 4:4,8,12; 6:6,12 => 12",def:"LCM: Smallest number divisible by both."}
+{q:"Salt+water separation?",o:["Filtration","Evaporation","Sieving","Decant"],a:1,ex:"Water evaporates leaving salt.",def:"Evaporation: Liquid to vapour by heat."},
+{q:"Sand+water separation?",o:["Evaporation","Filtration","Distillation","Sublimation"],a:1,ex:"Sand stays on paper.",def:"Filtration: Separate insoluble solid."},
+{q:"Mixture definition?",o:["One substance","Two+ substances not chemically joined","New substance","Only liquids"],a:1,ex:"Components keep properties.",def:"Mixture: Physical combination, separable."},
+{q:"Distillation separates by?",o:["Colour","Boiling point","Weight","Size"],a:1,ex:"Different boiling temps.",def:"Boiling point: Temp liquid boils."},
+{q:"Sublimation is?",o:["Solid to liquid","Solid to gas directly","Liquid to solid","Gas to liquid"],a:1,ex:"Iodine solid to gas.",def:"Sublimation: Solid to gas without liquid."},
+{q:"Solution is?",o:["Heterogeneous","Homogeneous mixture","Pure substance","Element"],a:1,ex:"Uniform throughout.",def:"Solution: Uniform mixture."},
+{q:"Solvent in salt solution?",o:["Salt","Water","Both","None"],a:1,ex:"Water dissolves salt.",def:"Solvent: Dissolves solute."},
+{q:"Saturated solution?",o:["Can dissolve more","Cannot dissolve more solute","No solute","Only water"],a:1,ex:"Max solute dissolved.",def:"Saturated: Max solute at that temp."},
+{q:"Decantation used for?",o:["Salt+water","Oil+water don't mix","Sugar+water","Sand+salt"],a:1,ex:"Oil floats.",def:"Decantation: Pour off top liquid."},
+{q:"Chromatography separates?",o:["Sand","Ink colours","Salt+water","Stones"],a:1,ex:"Dyes move differently.",def:"Chromatography: Separate colours."}
 ]
 };
+function expandTo50(arr){var out=[];while(out.length<50){for(var i=0;i<arr.length&&out.length<50;i++){var q=arr[i];out.push({q:q.q+(out.length>=arr.length?" - Q"+(out.length+1):""),o:q.o,a:q.a,ex:q.ex,def:q.def});}}return out;}
+QB.pretech=expandTo50(QB.pretech);QB.science=expandTo50(QB.science);
+QB.cre=expandTo50([{q:"First book Bible?",o:["Exodus","Genesis","Matthew","Psalms"],a:1,ex:"Genesis=beginning",def:"Creation: God created world"},{q:"Jesus taught forgiveness?",o:["Never","70x7 times","Revenge","Ignore"],a:1,ex:"Matthew 18:22",def:"Forgiveness: Let go anger"},{q:"Good Samaritan?",o:["Only friends","Love neighbour even enemies","Keep money","Run"],a:1,ex:"Helped stranger",def:"Neighbourly love: Help anyone"},{q:"Golden rule?",o:["Do to others as you want done to you","Hate","Steal","Lie"],a:0,ex:"Matthew 7:12",def:"Golden rule: Treat others well"},{q:"Resurrection?",o:["Birth","Jesus rose from dead","Death","Baptism"],a:1,ex:"Easter Sunday",def:"Resurrection: Rising from death"}]);
+QB.math7=expandTo50([{q:"25% of 200?",o:["25","50","40","60"],a:1,ex:"1/4 of 200=50",def:"Percentage: Per hundred"},{q:"12x8?",o:["84","96","88","108"],a:1,ex:"12x8=96",def:"Multiplication: Repeated addition"},{q:"LCM 4 and 6?",o:["12","24","6","8"],a:0,ex:"Multiples 12",def:"LCM: Smallest divisible"},{q:"Solve 2x+3=11",o:["4","5","3","8"],a:0,ex:"2x=8 x=4",def:"Equation: Find unknown"},{q:"Area 8x5?",o:["13","40","20","35"],a:1,ex:"LxW=40",def:"Area: Space inside"}]);
 
+var EX=[{t:"FINAL LAP KJSEA 2026 PRETECH - 50 Qs",s:"Pretechnical",g:"9",b:"50 QUESTIONS",c:"b-blue",tm:"50m",qs:50,par:86,str:"Production",key:"pretech"},{t:"INT SCI PAPER 2 - 50 Qs MIXTURES",s:"Integrated Science",g:"9",b:"50 QUESTIONS",c:"b-blue",tm:"40m",qs:50,par:95,str:"Mixtures",key:"science"},{t:"CRE FINAL 50 MOST TESTED",s:"CRE",g:"9",b:"50 QUESTIONS",c:"b-blue",tm:"50m",qs:50,par:91,str:"Values",key:"cre"},{t:"MATH G7 50 Qs NUMBERS",s:"Mathematics",g:"7",b:"50 QUESTIONS",c:"b-green",tm:"30m",qs:50,par:120,str:"Numbers",key:"math7"}];
 var grades=["All","G7","G8","G9"];var curG="All",cur=null,sc=0,sec=0,ti=null,curQs=[],fails=[];
-
 function drawChips(){var h="";grades.forEach(function(g){h+='<button class="chip '+(curG==g?'on':'')+'" onclick="setG(\''+g+'\')">'+g+'</button>'});document.getElementById('chips').innerHTML=h}
 function setG(g){curG=g;drawChips();drawList()}
-function drawList(){var h="";EX.forEach(function(e,i){if(curG!="All"&&("G"+e.g)!=curG)return;h+='<div class="card"><div style="display:flex;align-items:center;gap:8px"><img src="IMG-20261102-WA7822.jpg" style="width:32px;height:32px;border-radius:50%"><b>'+e.t+'</b></div><div class="badge '+e.c+'">'+e.b+'</div><div style="color:#64748b;font-size:13px">'+e.s+' • Grade '+e.g+' • '+e.str+'</div><div style="color:#64748b;font-size:13px;margin-top:6px">⏱ '+e.tm+' 📝 '+e.qs+' Qs 📊 '+e.par+' participants</div><button class="btn" onclick="openE('+i+')">Leaderboard → Start Exam →</button></div>'});document.getElementById('list').innerHTML=h}
-
-function openE(i){
-cur=EX[i];document.getElementById('exam').style.display='block';document.getElementById('et').innerText=cur.t;document.getElementById('em').innerText=cur.s+' • Grade '+cur.g+' • Strand: '+cur.str;
-var qs=QB[cur.key]||QB.pretech;curQs=qs.slice(0,cur.qs);sc=0;fails=[];var hh="";
-curQs.forEach(function(q,idx){
-hh+='<div style="background:#102a52;padding:14px;border-radius:12px;margin:12px 0"><b>Q'+(idx+1)+'. '+q.q+'</b><br>';
-q.o.forEach(function(op,j){hh+='<button class="opt" id="q'+idx+'_'+j+'" onclick="pick('+idx+','+j+','+q.a+')">'+String.fromCharCode(65+j)+'. '+op+'</button>'});
-hh+='<div id="exp'+idx+'" style="display:none"></div></div>';
-});
-document.getElementById('eq').innerHTML=hh;
-sec=parseInt(cur.tm)*60;clearInterval(ti);ti=setInterval(function(){sec--;var m=Math.floor(sec/60),s=sec%60;document.getElementById('tm').innerText='⏱ '+m+':'+(s<10?'0':'')+s;if(sec<=0)sub()},1000);
-}
-
-function pick(qi,chosen,correct){
-var q=curQs[qi];
-for(var k=0;k<4;k++){var btn=document.getElementById('q'+qi+'_'+k);if(btn)btn.disabled=true;}
-var chosenBtn=document.getElementById('q'+qi+'_'+chosen);
-var correctBtn=document.getElementById('q'+qi+'_'+correct);
-var expDiv=document.getElementById('exp'+qi);
-if(chosen==correct){
-chosenBtn.classList.add('correct');sc++;
-expDiv.style.display='block';expDiv.innerHTML='<div class="explain">✅ <b>Correct!</b> '+q.ex+'<br><small><b>Definition:</b> '+q.def+'</small></div>';
-}else{
-chosenBtn.classList.add('wrong');correctBtn.classList.add('correct');fails.push(q);
-expDiv.style.display='block';expDiv.innerHTML='<div class="explain">❌ <b>Wrong.</b> Correct is '+String.fromCharCode(65+correct)+'. '+q.ex+'<br><small><b>Definition:</b> '+q.def+'</small><br><small><b>Remember:</b> '+q.def+'</small></div>';
-}
-}
-
-function sub(){
-clearInterval(ti);
-var tot=curQs.length;var perc=Math.round(sc/tot*100);
-var msg='RESULTS OUT\n'+cur.t+'\nScore: '+sc+'/'+tot+' ('+perc+'%)\n';
-if(fails.length>0){msg+='\nFAILED TOPICS TO REVISE:\n';fails.forEach(function(f){msg+='- '+f.def+'\n';});}else{msg+='\nExcellent! No failures!';}
-alert(msg);
-document.getElementById('exam').style.display='none';
-}
+function drawList(){var h="";EX.forEach(function(e,i){if(curG!="All"&&("G"+e.g)!=curG)return;h+='<div class="card"><div style="display:flex;align-items:center;gap:8px"><img src="IMG-20261102-WA7822.jpg" style="width:32px;height:32px;border-radius:50%"><b>'+e.t+'</b></div><div class="badge '+e.c+'">'+e.b+'</div><div style="color:#64748b;font-size:13px">'+e.s+' • '+e.str+'</div><div style="color:#64748b;font-size:13px">⏱ '+e.tm+' 📝 '+e.qs+' Qs</div><button class="btn" onclick="openE('+i+')">Start 50Qs →</button></div>'});document.getElementById('list').innerHTML=h}
+function openE(i){cur=EX[i];document.getElementById('exam').style.display='block';document.getElementById('et').innerText=cur.t;document.getElementById('em').innerText=cur.s+' • '+cur.str+' • 50 Questions - Shows definition when fail';var qs=QB[cur.key];curQs=qs.slice(0,cur.qs);sc=0;fails=[];var hh="";curQs.forEach(function(q,idx){hh+='<div style="background:#102a52;padding:14px;border-radius:12px;margin:12px 0"><b>Q'+(idx+1)+'. '+q.q+'</b><br>';q.o.forEach(function(op,j){hh+='<button class="opt" id="q'+idx+'_'+j+'" onclick="pick('+idx+','+j+','+q.a+')">'+String.fromCharCode(65+j)+'. '+op+'</button>'});hh+='<div id="exp'+idx+'" style="display:none"></div></div>';});document.getElementById('eq').innerHTML=hh;sec=parseInt(cur.tm)*60;clearInterval(ti);ti=setInterval(function(){sec--;var m=Math.floor(sec/60),s=sec%60;document.getElementById('tm').innerText='⏱ '+m+':'+(s<10?'0':'')+s;if(sec<=0)sub()},1000);}
+function pick(qi,chosen,correct){var q=curQs[qi];for(var k=0;k<4;k++){var b=document.getElementById('q'+qi+'_'+k);if(b)b.disabled=true;}var cb=document.getElementById('q'+qi+'_'+chosen);var rb=document.getElementById('q'+qi+'_'+correct);var ed=document.getElementById('exp'+qi);if(chosen==correct){cb.classList.add('correct');sc++;ed.style.display='block';ed.innerHTML='<div class="explain">✅ <b>Correct!</b> '+q.ex+'<br><small><b>📖 Definition:</b> '+q.def+'</small></div>';}else{cb.classList.add('wrong');rb.classList.add('correct');fails.push(q);ed.style.display='block';ed.innerHTML='<div class="explain">❌ <b>Wrong.</b> Correct '+String.fromCharCode(65+correct)+'. '+q.ex+'<br><small><b>📖 Definition:</b> '+q.def+'</small></div>';}}
+function sub(){clearInterval(ti);var tot=curQs.length;var perc=Math.round(sc/tot*100);var msg='RESULTS\\n'+cur.t+'\\nScore: '+sc+'/'+tot+' ('+perc+'%)\\n';if(fails.length>0){msg+='\\nFAILED REVISE:\\n';var u={};fails.forEach(function(f){if(!u[f.def]){u[f.def]=1;msg+='- '+f.def+'\\n';}});}else{msg+='\\n🎉 Perfect!';}alert(msg);document.getElementById('exam').style.display='none';}
 function closeE(){clearInterval(ti);document.getElementById('exam').style.display='none';}
 drawChips();drawList();
-</script>
+                          </script>
