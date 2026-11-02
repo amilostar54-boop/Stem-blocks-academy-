@@ -1,0 +1,365 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STEM Blocks Academy PRO</title>
+<style>
+*{box-sizing:border-box;font-family:Inter,sans-serif}
+body{margin:0;background:#f8fafc;padding-bottom:90px}
+header{
+background:linear-gradient(135deg,#0b1e3a,#1e3a5f);
+color:#fff;padding:12px 16px;
+display:flex;align-items:center;gap:12px;
+position:sticky;top:0;z-index:20
+}
+.logo{
+width:50px;height:50px;border-radius:50%;
+background:#fff;padding:2px;
+border:3px solid #f9c63a;object-fit:cover
+}
+h{font-weight:900;line-height:1.1}
+h span{color:#f9c63a}
+h small{display:block;font-size:10px;opacity:.8}
+.hero{
+background:linear-gradient(135deg,#fff,#fefce8);
+padding:14px;margin:12px;
+border-radius:18px;border:1px solid #fef08a
+}
+.hero-stats{display:flex;gap:8px;margin-top:8px}
+.stat{
+background:#0b1e3a;color:#fff;
+padding:8px 12px;border-radius:10px;
+flex:1;text-align:center
+}
+.stat b{display:block;color:#f9c63a}
+.chips{display:flex;gap:8px;overflow:auto;padding:10px}
+.chip{
+padding:10px 16px;border-radius:24px;
+background:#fff;border:1px solid #e2e8f0;
+font-weight:700;white-space:nowrap;
+cursor:pointer
+}
+.chip.on{background:#0b1e3a;color:#fff}
+.card{
+background:#fff;border-radius:18px;
+padding:16px;margin:12px;
+box-shadow:0 4px 16px rgba(0,0,0,.06);
+border:1px solid #f1f5f9;
+position:relative;overflow:hidden
+}
+.badge{
+padding:5px 10px;border-radius:20px;
+font-size:11px;font-weight:800
+}
+.b-yellow{background:#fef08a;color:#854d0e}
+.b-blue{background:#dbeafe;color:#1d4ed8}
+.b-green{background:#dcfce7;color:#15803d}
+.btn{
+width:100%;padding:12px;border-radius:12px;
+border:none;font-weight:800;
+margin-top:10px;cursor:pointer
+}
+.btn-primary{background:#0b1e3a;color:#fff}
+.bottom{
+position:fixed;bottom:0;left:0;right:0;
+background:#fff;border-top:1px solid #e2e8f0;
+display:flex;justify-content:space-around;
+padding:8px 0;z-index:50
+}
+.btm{
+border:none;background:none;
+font-size:11px;font-weight:700;
+color:#94a3b8;padding:6px 14px;
+border-radius:12px;cursor:pointer
+}
+.btm.on{
+background:#fef08a;color:#0b1e3a;
+border:1px solid #f9c63a
+}
+.tab{display:none}
+.tab.on{display:block}
+#exam{
+position:fixed;inset:0;
+background:#0b1e3a;color:#fff;
+padding:12px;display:none;
+z-index:99;overflow:auto
+}
+.opt{
+width:100%;text-align:left;
+padding:12px;margin:6px 0;
+border-radius:12px;
+border:1px solid #1e3a5f;
+background:#132a52;color:#fff;
+font-weight:600;cursor:pointer
+}
+.opt.correct{background:#10b981!important}
+.opt.wrong{background:#ef4444!important}
+.explain{
+margin-top:10px;padding:10px;
+background:#1e3a5f;border-radius:10px;
+font-size:13px;border-left:4px solid #f9c63a
+}
+.ribbon{
+position:absolute;top:10px;right:-28px;
+background:#ef4444;color:#fff;
+padding:3px 36px;font-size:10px;
+font-weight:800;transform:rotate(35deg)
+}
+</style>
+</head>
+<body>
+<header>
+<img class="logo" src="IMG-20261102-WA7822.jpg">
+<h>STEM <span>BLOCKS ACADEMY</span>
+<small>⭐ TRUSTED • KCSE & KJSEA • KISII & BOMET</small>
+</h>
+</header>
+
+<div id="tab-exams" class="tab on">
+<div class="hero">
+<b>🚀 Learn Today, Lead Tomorrow</b><br>
+<small style="color:#64748b">
+Real papers used by top schools
+</small>
+<div class="hero-stats">
+<div class="stat"><b>2,340+</b><small>Students</small></div>
+<div class="stat"><b>86%</b><small>Pass</small></div>
+<div class="stat"><b>12+</b><small>Schools</small></div>
+<div class="stat"><b>4.9★</b><small>Rating</small></div>
+</div>
+</div>
+<div class="chips" id="chips"></div>
+<div id="list"></div>
+</div>
+
+<div id="tab-leader" class="tab">
+<div class="card">
+<h2>🏆 Leaderboard</h2>
+<div id="leaderList"></div>
+<button class="btn btn-primary" onclick="switchTab('exams')">
+← Back to Exams
+</button>
+</div>
+</div>
+
+<div id="tab-strands" class="tab">
+<div class="card">
+<h2>📚 Strands</h2>
+<div id="strandList"></div>
+</div>
+</div>
+
+<div id="tab-account" class="tab">
+<div class="card">
+<h2>👤 My Account</h2>
+<p>Exams Done: <b id="doneCount">0</b></p>
+<p>Last Score: <b id="lastScore">-</b></p>
+<button class="btn btn-primary" onclick="switchTab('exams')">
+Go Exams →
+</button>
+</div>
+</div>
+
+<div class="bottom">
+<button class="btm on" id="btm-exams" onclick="switchTab('exams')">
+⏱<br>Exams
+</button>
+<button class="btm" id="btm-leader" onclick="switchTab('leader')">
+📊<br>Leaderboard
+</button>
+<button class="btm" id="btm-strands" onclick="switchTab('strands')">
+📚<br>Strands
+</button>
+<button class="btm" id="btm-account" onclick="switchTab('account')">
+👤<br>Account
+</button>
+</div>
+
+<div id="exam">
+<div style="background:#f9c63a;color:#000;
+padding:10px;border-radius:10px;
+font-weight:900;text-align:center;
+position:sticky;top:0;
+display:flex;justify-content:space-between" id="tm">
+<span>⏱ 50:00</span>
+<span id="progress">Q1/50</span>
+</div>
+<h2 id="et"></h2>
+<p id="em" style="opacity:.8"></p>
+<div id="eq"></div>
+<button style="width:100%;padding:14px;
+background:#10b981;color:#fff;
+border:none;border-radius:12px;
+font-weight:900;margin-top:12px" onclick="sub()">
+✅ Submit
+</button>
+<button style="width:100%;padding:12px;
+background:#334155;color:#fff;
+border:none;border-radius:12px;
+margin-top:8px" onclick="closeE()">
+❌ Exit
+</button>
+</div>
+
+<script>
+function switchTab(n){
+document.querySelectorAll('.tab').forEach(t=>{
+t.classList.remove('on')
+});
+document.querySelectorAll('.btm').forEach(b=>{
+b.classList.remove('on')
+});
+document.getElementById('tab-'+n).classList.add('on');
+document.getElementById('btm-'+n).classList.add('on');
+if(n=='leader')drawLeader();
+if(n=='strands')drawStrands();
+if(n=='account')drawAccount();
+window.scrollTo(0,0);
+}
+
+var EX=[
+{
+t:"FINAL LAP KJSEA PRETECH MUST COME 50Qs",
+s:"Pretechnical",g:"9",
+b:"🔥 50 Qs MUST",c:"b-yellow",
+tm:"50m",qs:50,par:186,
+str:"Production",key:"pretech",
+ribbon:"HOT"
+},
+{
+t:"INT SCI MIXTURES 50Qs",
+s:"Integrated Sci",g:"9",
+b:"⭐ TOP RATED",c:"b-blue",
+tm:"40m",qs:50,par:195,
+str:"Mixtures",key:"science",
+ribbon:"NEW"
+},
+{
+t:"CRE FINAL 50 MOST TESTED",
+s:"CRE",g:"9",
+b:"📖 50 Qs",c:"b-blue",
+tm:"50m",qs:50,par:191,
+str:"Values",key:"cre",
+ribbon:""
+},
+{
+t:"MATH G7 NUMBERS",
+s:"Math",g:"7",
+b:"🔢 LIVE",c:"b-green",
+tm:"30m",qs:50,par:220,
+str:"Numbers",key:"math7",
+ribbon:"LIVE"
+}
+];
+
+var grades=[
+{g:"All",label:"🌟 All"},
+{g:"G7",label:"🔢 G7"},
+{g:"G9",label:"🎓 G9"}
+];
+
+var curG="All";
+var cur=null;
+var sc=0;
+var sec=0;
+var ti=null;
+var curQs=[];
+var fails=[];
+var answered=0;
+
+function drawChips(){
+var h="";
+grades.forEach(function(g){
+h+='<button class="chip '+
+(curG==g.g?'on':'')+
+'" onclick="setG(\''+g.g+'\')">'+
+g.label+'</button>';
+});
+document.getElementById('chips').innerHTML=h;
+}
+
+function setG(g){
+curG=g;
+drawChips();
+drawList();
+}
+
+function drawList(){
+var h="";
+EX.forEach(function(e,i){
+if(curG!="All" && ("G"+e.g)!=curG)return;
+h+='<div class="card">';
+if(e.ribbon){
+h+='<div class="ribbon">'+e.ribbon+'</div>';
+}
+h+='<div style="display:flex;gap:10px">';
+h+='<img src="IMG-20261102-WA7822.jpg" ';
+h+='style="width:32px;height:32px;border-radius:50%">';
+h+='<b>'+e.t+'</b></div>';
+h+='<div style="margin-top:8px">';
+h+='<span class="badge '+e.c+'">'+e.b+'</span>';
+h+='</div>';
+h+='<div style="color:#64748b;font-size:12px;margin-top:6px">';
+h+='⏱ '+e.tm+' 📝 '+e.qs+' Qs 👥 '+e.par;
+h+='</div>';
+h+='<button class="btn btn-primary" ';
+h+='onclick="openE('+i+')">';
+h+='▶ Start Pro Exam</button></div>';
+});
+document.getElementById('list').innerHTML=h;
+}
+
+function drawLeader(){
+var ls=localStorage.getItem('lastScore')||"0/50";
+var lp=localStorage.getItem('lastPerc')||"0%";
+var h="";
+h+='<div style="padding:12px;border-bottom:1px solid #eee">';
+h+='🥇 Brian K. Kisii - 48/50 (96%)</div>';
+h+='<div style="padding:12px;border-bottom:1px solid #eee">';
+h+='🥈 Faith Bomet - 46/50 (92%)</div>';
+h+='<div style="padding:12px;border-bottom:1px solid #eee">';
+h+='⭐ You - '+ls+' ('+lp+')</div>';
+document.getElementById('leaderList').innerHTML=h;
+}
+
+function drawStrands(){
+var h="";
+h+='<div style="padding:14px;background:#fff;';
+h+='border-radius:12px;margin:8px;';
+h+='border-left:4px solid #f9c63a">';
+h+='<b>🔧 Production & Tools</b><br>';
+h+='<small>50 Qs • Must come</small></div>';
+document.getElementById('strandList').innerHTML=h;
+}
+
+function drawAccount(){
+document.getElementById('doneCount').innerText=
+localStorage.getItem('doneCount')||0;
+document.getElementById('lastScore').innerText=
+localStorage.getItem('lastScore')||"-";
+}
+
+function openE(i){
+cur=EX[i];
+document.getElementById('exam').style.display='block';
+document.getElementById('et').innerText=cur.t;
+document.getElementById('em').innerText=cur.s+' • 50 Qs';
+alert('PRO Exam: 50 Qs with definitions - Full question bank loading next!');
+}
+
+function sub(){
+document.getElementById('exam').style.display='none';
+switchTab('leader');
+}
+function closeE(){
+document.getElementById('exam').style.display='none';
+}
+
+drawChips();
+drawList();
+drawLeader();
+drawStrands();
+</script>
+</body>
+</html>
