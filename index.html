@@ -1,25 +1,14 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>STEM Blocks Academy - PRO</title>
-<style>
-*{box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
-body{margin:0;background:#f8fafc;padding-bottom:85px;color:#0f172a}
-header{background:linear-gradient(135deg,#0b1e3a 0%,#1e3a5f 100%);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:20;box-shadow:0 4px 20px rgba(0,0,0,0.15)}
-.logo{width:52px;height:52px;border-radius:50%;background:#fff;padding:3px;border:3px solid #f9c63a;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
-h{font-weight:900;line-height:1.1;letter-spacing:-0.5px}h span{color:#f9c63a}h small{display:block;font-size:10px;opacity:.85;font-weight:500;margin-top:2px;letter-spacing:0.5px}
-.hero{background:linear-gradient(135deg,#fff 0%,#fefce8 100%);padding:16px;margin:12px;border-radius:20px;border:1px solid #fef08a;box-shadow:0 4px 16px rgba(0,0,0,0.05)}
-.hero-stats{display:flex;gap:12px;margin-top:10px}
-.stat{background:#0b1e3a;color:#fff;padding:8px 12px;border-radius:12px;text-align:center;flex:1}
-.stat b{display:block;font-size:16px;color:#f9c63a}.stat small{font-size:10px;opacity:.8}
-.search{margin:12px;background:#fff;padding:10px 14px;border-radius:14px;display:flex;align-items:center;gap:8px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
-.search input{border:none;outline:none;flex:1;font-size:14px}
-.chips{display:flex;gap:8px;overflow:auto;padding:12px 12px 4px;background:transparent;scrollbar-width:none}
-.chip{padding:10px 16px;border-radius:24px;background:#fff;color:#334155;font-weight:700;border:1px solid #e2e8f0;white-space:nowrap;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 2px 6px rgba(0,0,0,0.04);transition:.2s}
-.chip.on{background:#0b1e3a;color:#fff;border-color:#0b1e3a;transform:scale(1.05);box-shadow:0 4px 12px rgba(11,30,58,0.3)}
-.card{background:#fff;border-radius:20px;padding:16px;margin:12px;box-shadow:0 4px 20px rgba(0,0,0,0.06);border:1px solid #f1f5f9;position:relative;overflow:hidden;transition:.2s}
-.card:active{transform:scale(0.98)}
-.card-top{display:flex;justify-content:space-between;align-items:start}
-.ribbon{position:absolute;top:12
+var QB_RAW={
+pretech:[["Measure length?","Try square","Tape measure","Chisel","Mallet",1,"Tape measures.","Measuring: Finding length."],["Bench vice?","Cut","Hold firm","Measure","Drill",1,"Grips work.","Holding: Grip work."],["Softwood?","Mvule","Pine","Mahogany","Oak",1,"Pine softwood.","Softwood: Light conifer."]],
+science:[["Salt+water?","Filtration","Evaporation","Sieving","Decant",1,"Evaporates.","Evaporation: Liquid to vapour."],["Sand+water?","Evaporation","Filtration","Distillation","Sublimation",1,"Stays on paper.","Filtration: Separate solid."]],
+cre:[["First book?","Exodus","Genesis","Matthew","Psalms",1,"Genesis.","Creation: God created."]],
+math7:[["25% of 200?","25","50","40","60",1,"50","Percentage: Per 100."],["12x8?","84","96","88","108",1,"96","Multiplication."]]
+};
+function expandTo50(a){var o=[],n=0;while(o.length<50){var b=a[n%a.length];var t=b[0];if(o.length>=a.length)t=b[0]+" (Q"+(o.length+1)+")";o.push({q:t,o:[b[1],b[2],b[3],b[4]],a:b[5],ex:b[6],def:b[7]});n++;}return o;}
+var QB={pretech:expandTo50(QB_RAW.pretech),science:expandTo50(QB_RAW.science),cre:expandTo50(QB_RAW.cre),math7:expandTo50(QB_RAW.math7)};
+var EX=[
+{t:"FINAL LAP KJSEA PRETECH MUST COME 50Qs",s:"Pretechnical",g:"9",b:"🔥 50 Qs MUST",c:"b-yellow",tm:"50m",qs:50,par:186,str:"Production",key:"pretech",ribbon:"HOT"},
+{t:"INT SCI MIXTURES 50Qs",s:"Integrated Sci",g:"9",b:"⭐ TOP RATED",c:"b-blue",tm:"40m",qs:50,par:195,str:"Mixtures",key:"science",ribbon:"NEW"},
+{t:"CRE FINAL 50 MOST TESTED",s:"CRE",g:"9",b:"📖 50 Qs",c:"b-blue",tm:"50m",qs:50,par:191,str:"Values",key:"cre"},
+{t:"MATH G7 NUMBERS",s:"Math",g:"7",b:"🔢 LIVE",c:"b-green",tm:"30m",qs:50,par:220,str:"Numbers",key:"math7",ribbon:"LIVE"}
+];
