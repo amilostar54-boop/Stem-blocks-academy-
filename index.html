@@ -3,97 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>STEM Blocks Academy - Full Clickable</title>
+<title>STEM Blocks Academy - PRO</title>
 <style>
-*{box-sizing:border-box;font-family:Inter,sans-serif}
-body{margin:0;background:#f3f6fb;padding-bottom:80px}
-header{background:#0b1e3a;color:#fff;padding:10px 14px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
-.logo{width:48px;height:48px;border-radius:50%;background:#fff;padding:2px;border:2px solid #f9c63a;object-fit:cover}
-h{font-weight:900;line-height:1.1}h span{color:#f9c63a}h small{display:block;font-size:11px;opacity:.8;font-weight:400}
-.chips{display:flex;gap:6px;overflow:auto;padding:10px;background:#fff;border-bottom:1px solid #eee}
-.chip{padding:8px 14px;border-radius:20px;background:#eef2ff;color:#1e40af;font-weight:800;border:none;cursor:pointer;white-space:nowrap}
-.chip.on{background:#0b1e3a;color:#fff}
-.card{background:#fff;border-radius:18px;padding:16px;margin:12px;box-shadow:0 4px 12px #0001}
-.badge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:800}
-.b-blue{background:#dbeafe;color:#1d4ed8}.b-green{background:#dcfce7;color:#15803d}
-.btn{width:100%;padding:12px;border-radius:12px;border:1px solid #e5e7eb;background:#fff;font-weight:800;margin-top:10px;cursor:pointer}
-.btn-primary{background:#0b1e3a;color:#fff}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:2px solid #0b1e3a;display:flex;justify-content:space-around;padding:8px 0;z-index:50}
-.btm{border:none;background:none;font-size:12px;font-weight:800;color:#64748b;cursor:pointer;padding:6px 14px;border-radius:12px}
-.btm.on{color:#0b1e3a;background:#fef08a;border:1px solid #f9c63a}
-.tab{display:none}.tab.on{display:block}
-#exam{position:fixed;inset:0;background:#0b1e3a;color:#fff;padding:12px;display:none;z-index:99;overflow:auto}
-.opt{width:100%;text-align:left;padding:12px;margin:6px 0;border-radius:12px;border:1px solid #1e3a5f;background:#132a52;color:#fff;font-weight:600;cursor:pointer}
-.opt.correct{background:#10b981!important}.opt.wrong{background:#ef4444!important}
-.explain{margin-top:10px;padding:12px;background:#1e3a5f;border-radius:10px;font-size:13px;border-left:4px solid #f9c63a}
-.leader-row{display:flex;justify-content:space-between;padding:12px;border-bottom:1px solid #f1f5f9}
-.strand-card{background:#fff;border-radius:16px;padding:14px;margin:10px;border-left:5px solid #f9c63a}
-</style>
-</head>
-<body>
-<header>
-<img class="logo" src="IMG-20261102-WA7822.jpg">
-<h>STEM <span>BLOCKS ACADEMY</span><small>Tap Bottom Tabs - All Clickable!</small></h>
-</header>
-<div class="chips" id="chips"></div>
-
-<div id="tab-exams" class="tab on"><div id="list"></div></div>
-
-<div id="tab-leader" class="tab">
-<div class="card">
-<h2>🏆 Leaderboard - Kisii & Bomet</h2>
-<div id="leaderList"></div>
-<button class="btn btn-primary" onclick="switchTab('exams')">← Back to Exams</button>
-</div>
-</div>
-
-<div id="tab-strands" class="tab">
-<div class="card">
-<h2>📚 CBC Strands - Click to Start</h2>
-<div id="strandList"></div>
-</div>
-</div>
-
-<div id="tab-account" class="tab">
-<div class="card">
-<h2>👤 My Account</h2>
-<p><b>Name:</b> STEM Student</p>
-<p><b>Exams Done:</b> <span id="doneCount">0</span></p>
-<p><b>Last Score:</b> <span id="lastScore">-</span></p>
-<p><b>Average:</b> <span id="avgScore">0%</span></p>
-<button class="btn" onclick="localStorage.clear();alert('Data cleared!');location.reload()">🗑️ Clear My Data</button>
-<button class="btn btn-primary" onclick="switchTab('exams')">Go to Exams →</button>
-</div>
-</div>
-
-<div class="bottom">
-<button class="btm on" id="btm-exams" onclick="switchTab('exams')">⏱<br>Exams</button>
-<button class="btm" id="btm-leader" onclick="switchTab('leader')">📊<br>Leaderboard</button>
-<button class="btm" id="btm-strands" onclick="switchTab('strands')">📚<br>Strands</button>
-<button class="btm" id="btm-account" onclick="switchTab('account')">👤<br>Account</button>
-</div>
-
-<div id="exam">
-<div style="background:#f9c63a;color:#000;padding:12px;border-radius:10px;font-weight:900;text-align:center;position:sticky;top:0" id="tm">⏱ 50:00</div>
-<h2 id="et"></h2>
-<p id="em" style="opacity:.8;font-size:13px"></p>
-<div id="eq"></div>
-<button style="width:100%;padding:14px;background:#10b981;color:#fff;border:none;border-radius:12px;font-weight:900;margin-top:14px" onclick="sub()">✅ Submit Exam</button>
-<button style="width:100%;padding:12px;background:#334155;color:#fff;border:none;border-radius:12px;margin-top:8px" onclick="closeE()">❌ Exit</button>
-</div>
-
-<script>
-function switchTab(name){
-document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
-document.querySelectorAll('.btm').forEach(b=>b.classList.remove('on'));
-document.getElementById('tab-'+name).classList.add('on');
-document.getElementById('btm-'+name).classList.add('on');
-if(name=='leader')drawLeader();
-if(name=='strands')drawStrands();
-if(name=='account')drawAccount();
-window.scrollTo(0,0);
-}
-
-var EX=[
-{t:"FINAL LAP KJSEA 2026 PRETECH - 50Qs",s:"Pretechnical",g:"9",b:"50 Qs",c:"b-blue",tm:"50m",qs:50,par:86,str:"Production",key:"pretech"},
-{t:"INT SCI - 50
+*{box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
+body{margin:0;background:#f8fafc;padding-bottom:85px;color:#0f172a}
+header{background:linear-gradient(135deg,#0b1e3a 0%,#1e3a5f 100%);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:20;box-shadow:0 4px 20px rgba(0,0,0,0.15)}
+.logo{width:52px;height:52px;border-radius:50%;background:#fff;padding:3px;border:3px solid #f9c63a;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
+h{font-weight:900;line-height:1.1;letter-spacing:-0.5px}h span{color:#f9c63a}h small{display:block;font-size:10px;opacity:.85;font-weight:500;margin-top:2px;letter-spacing:0.5px}
+.hero{background:linear-gradient(135deg,#fff 0%,#fefce8 100%);padding:16px;margin:12px;border-radius:20px;border:1px solid #fef08a;box-shadow:0 4px 16px rgba(0,0,0,0.05)}
+.hero-stats{display:flex;gap:12px;margin-top:10px}
+.stat{background:#0b1e3a;color:#fff;padding:8px 12px;border-radius:12px;text-align:center;flex:1}
+.stat b{display:block;font-size:16px;color:#f9c63a}.stat small{font-size:10px;opacity:.8}
+.search{margin:12px;background:#fff;padding:10px 14px;border-radius:14px;display:flex;align-items:center;gap:8px;border:1px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+.search input{border:none;outline:none;flex:1;font-size:14px}
+.chips{display:flex;gap:8px;overflow:auto;padding:12px 12px 4px;background:transparent;scrollbar-width:none}
+.chip{padding:10px 16px;border-radius:24px;background:#fff;color:#334155;font-weight:700;border:1px solid #e2e8f0;white-space:nowrap;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 2px 6px rgba(0,0,0,0.04);transition:.2s}
+.chip.on{background:#0b1e3a;color:#fff;border-color:#0b1e3a;transform:scale(1.05);box-shadow:0 4px 12px rgba(11,30,58,0.3)}
+.card{background:#fff;border-radius:20px;padding:16px;margin:12px;box-shadow:0 4px 20px rgba(0,0,0,0.06);border:1px solid #f1f5f9;position:relative;overflow:hidden;transition:.2s}
+.card:active{transform:scale(0.98)}
+.card-top{display:flex;justify-content:space-between;align-items:start}
+.ribbon{position:absolute;top:12
