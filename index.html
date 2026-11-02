@@ -54,4 +54,129 @@ pretech:[
 ["Hardwood example?","Pine","Mvule","Cypress","Fir",1,"Mvule is heavy hardwood.","Hardwood: Strong wood from broadleaf trees."],
 ["PPE means?","Open shoes","Personal Protective Equipment","Shorts","Running",1,"Goggles, gloves prevent injury.","PPE: Safety gear to prevent workshop accidents."],
 ["First step in production?","Finishing","Design sketch","Assembly","Selling",1,"You must design before you make.","Production: Process from design to finished product."],
-["Try square checks?","Length","90° right angle","Weight","Colour",1,"Try square tests 90 degrees.","Try
+["Try square checks?","Length","90° right angle","Weight","Colour",1,"Try square tests 90 degrees.","Try square: Tool for checking right angle."],
+["Marking gauge does?","Cut","Make parallel lines","Drill","Hold",1,"It marks parallel lines from edge.","Marking gauge: Tool for marking lines."],
+["Hacksaw cuts?","Wood","Metal","Paper","Cloth",1,"Hacksaw has fine teeth for metal.","Hacksaw: Saw for cutting metals."],
+["Coping saw for?","Straight cuts","Curved cuts in wood","Metal","Concrete",1,"Coping saw has thin blade for curves.","Coping saw: Saw for curved wood cuts."]
+],
+science:[
+["Salt+water separation?","Filtration","Evaporation","Sieving","Decanting",1,"Water evaporates leaving salt behind.","Evaporation: Liquid changes to vapour when heated."],
+["Sand+water separation?","Evaporation","Filtration","Distillation","Sublimation",1,"Sand does not dissolve, stays on filter paper.","Filtration: Separating insoluble solid from liquid."],
+["What is a mixture?","One substance","Two+ substances mixed, not chemically joined","New substance","Only liquids",1,"In mixtures components keep properties.","Mixture: Physical combination, can be separated."],
+["Distillation separates based on?","Colour","Boiling point","Weight","Size",1,"Different liquids boil at different temps.","Boiling point: Temperature when liquid boils."],
+["Sublimation is?","Solid to liquid","Solid to gas directly","Liquid to solid","Gas to liquid",1,"Iodine goes solid to gas.","Sublimation: Solid changes directly to gas."],
+["Solution is?","Heterogeneous","Homogeneous mixture","Pure substance","Element",1,"Solution uniform throughout.","Solution: Uniform mixture where solute dissolves."],
+["Solvent in salt solution?","Salt","Water","Both","None",1,"Water dissolves salt.","Solvent: Liquid that dissolves solute."],
+["Saturated solution means?","Can dissolve more","Cannot dissolve more solute","No solute","Only water",1,"Max solute dissolved at that temp.","Saturated: Contains max solute, can't dissolve more."],
+["Decantation used for?","Salt+water","Oil+water that don't mix","Sugar+water","Sand+salt",1,"Oil floats on water, pour off.","Decantation: Pouring off top liquid carefully."],
+["Chromatography separates?","Sand","Ink colours","Salt+water","Stones",1,"Different dyes move at different speeds.","Chromatography: Separate colours/dyes."]
+],
+cre:[
+["First book of Bible?","Exodus","Genesis","Matthew","Psalms",1,"Genesis means beginning.","Creation: God made world in Genesis 1."],
+["Jesus taught forgiveness?","Never forgive","Forgive 70x7 times","Revenge","Ignore",1,"Matthew 18:22 says 70x7.","Forgiveness: Letting go anger, God forgives us."],
+["Good Samaritan teaches?","Help only friends","Love neighbour even enemies","Keep money","Run away",1,"Samaritan helped stranger hurt.","Neighbourly love: Helping anyone in need."],
+["Golden rule?","Do to others as you want done to you","Hate enemies","Steal","Lie",0,"Matthew 7:12","Golden rule: Treat others how you want treated."],
+["Last Supper was?","Breakfast","Jesus last meal with disciples","Wedding","Funeral",1,"Before crucifixion.","Last Supper: Jesus shared bread/wine."],
+["Who betrayed Jesus?","Peter","Judas Iscariot","John","Paul",1,"30 silver pieces.","Betrayal: Turning against friend."],
+["Resurrection means?","Birth","Jesus rose from dead","Death","Baptism",1,"Rose on Easter Sunday.","Resurrection: Rising from death."],
+["Prodigal son teaches?","Revenge","God forgives when we repent","Never forgive","Hatred",1,"Father forgave son returned.","Repentance: Returning to God, He forgives."],
+["Ten Commandments given to?","Abraham","Moses","David","Jesus",1,"On Mount Sinai.","Commandments: God's 10 laws."],
+["Baptism symbolizes?","Death only","New life in Christ","Money","Food",1,"Washing away sin.","Baptism: New life, washing sin."]
+],
+math7:[
+["25% of 200?","25","50","40","60",1,"25% = 1/4, 1/4 of 200 = 50.","Percentage: Part per 100."],
+["12 x 8?","84","96","88","108",1,"12x8=96","Multiplication: Repeated addition."],
+["LCM of 4 and 6?","12","24","6","8",0,"4:4,8,12 6:6,12 => 12","LCM: Smallest number divisible by both."],
+["HCF of 12 and 18?","6","12","3","9",0,"Common factors: 6","HCF: Greatest number dividing both."],
+["15 + (-8)?","23","7","-7","-23",1,"15-8=7","Integers: Positive and negative numbers."],
+["3/4 as decimal?","0.25","0.75","0.5","0.34",1,"3 divided by 4 = 0.75","Decimal: Fraction written with dot."],
+["Area rectangle 8x5?","13","40","20","35",1,"Length x Width = 40","Area: Space inside shape."],
+["Perimeter square side 6?","12","24","36","18",1,"4 sides x6 =24","Perimeter: Distance around shape."],
+["Solve: 2x+3=11, x?","4","5","3","8",0,"2x=8 x=4","Equation: Finding unknown value."],
+["Average of 4,6,10?","6","6.66","20","10",1,"(4+6+10)/3=6.66","Average: Sum divided by count."]
+]
+};
+function expandTo50(arr){
+var out=[];var n=0;
+while(out.length<50){
+var base=arr[n%arr.length];
+var qText=base[0];
+if(out.length>=arr.length) qText=base[0]+" (Q"+(out.length+1)+")";
+out.push({q:qText,o:[base[1],base[2],base[3],base[4]],a:base[5],ex:base[6],def:base[7]});
+n++;
+}
+return out;
+}
+var QB={
+pretech: expandTo50(QB_RAW.pretech),
+science: expandTo50(QB_RAW.science),
+cre: expandTo50(QB_RAW.cre),
+math7: expandTo50(QB_RAW.math7)
+};
+var grades=["All","G7","G8","G9"];var curG="All",cur=null,sc=0,sec=0,ti=null,curQs=[],fails=[];
+function drawChips(){var h="";grades.forEach(function(g){h+='<button class="chip '+(curG==g?'on':'')+'" onclick="setG(\''+g+'\')">'+g+'</button>';});document.getElementById('chips').innerHTML=h;}
+function setG(g){curG=g;drawChips();drawList();}
+function drawList(){
+var h="";EX.forEach(function(e,i){
+if(curG!="All" && ("G"+e.g)!=curG) return;
+h+='<div class="card"><div style="display:flex;align-items:center;gap:8px"><img src="IMG-20261102-WA7822.jpg" style="width:32px;height:32px;border-radius:50%;background:#fff"><b>'+e.t+'</b></div><div class="badge '+e.c+'">'+e.b+'</div><div style="color:#64748b;font-size:13px">'+e.s+' • Grade '+e.g+' • '+e.str+'</div><div style="color:#64748b;font-size:13px;margin-top:6px">⏱ '+e.tm+' 📝 '+e.qs+' Qs 📊 '+e.par+' participants</div><button class="btn" onclick="openE('+i+')">Start 50Qs Exam →</button></div>';
+});
+document.getElementById('list').innerHTML=h;
+}
+function openE(i){
+cur=EX[i];
+document.getElementById('exam').style.display='block';
+document.getElementById('et').innerText=cur.t;
+document.getElementById('em').innerText=cur.s+' • Grade '+cur.g+' • Strand: '+cur.str+' • 50 Questions - Shows definition when you fail';
+var qs=QB[cur.key];
+curQs=qs.slice(0,cur.qs);
+sc=0;fails=[];
+var hh="";
+curQs.forEach(function(q,idx){
+hh+='<div style="background:#102a52;padding:14px;border-radius:12px;margin:12px 0"><b>Q'+(idx+1)+'. '+q.q+'</b><br>';
+q.o.forEach(function(op,j){
+hh+='<button class="opt" id="q'+idx+'_'+j+'" onclick="pick('+idx+','+j+','+q.a+')">'+String.fromCharCode(65+j)+'. '+op+'</button>';
+});
+hh+='<div id="exp'+idx+'" style="display:none"></div></div>';
+});
+document.getElementById('eq').innerHTML=hh;
+sec=parseInt(cur.tm)*60;
+clearInterval(ti);
+ti=setInterval(function(){
+sec--;var m=Math.floor(sec/60),s=sec%60;
+document.getElementById('tm').innerText='⏱ '+m+':'+(s<10?'0':'')+s;
+if(sec<=0) sub();
+},1000);
+}
+function pick(qi,chosen,correct){
+var q=curQs[qi];
+for(var k=0;k<4;k++){var btn=document.getElementById('q'+qi+'_'+k);if(btn)btn.disabled=true;}
+var chosenBtn=document.getElementById('q'+qi+'_'+chosen);
+var correctBtn=document.getElementById('q'+qi+'_'+correct);
+var expDiv=document.getElementById('exp'+qi);
+if(chosen==correct){
+chosenBtn.classList.add('correct');sc++;
+expDiv.style.display='block';
+expDiv.innerHTML='<div class="explain">✅ <b>Correct!</b> '+q.ex+'<br><small><b>📖 Definition:</b> '+q.def+'</small></div>';
+}else{
+chosenBtn.classList.add('wrong');correctBtn.classList.add('correct');fails.push(q);
+expDiv.style.display='block';
+expDiv.innerHTML='<div class="explain">❌ <b>Wrong.</b> Correct is '+String.fromCharCode(65+correct)+'. '+q.ex+'<br><small><b>📖 Definition:</b> '+q.def+'</small><br><small><b>💡 Remember:</b> '+q.def+'</small></div>';
+}
+}
+function sub(){
+clearInterval(ti);
+var tot=curQs.length;var perc=Math.round(sc/tot*100);
+var msg='RESULTS OUT\n'+cur.t+'\nScore: '+sc+'/'+tot+' ('+perc+'%)\n';
+if(fails.length>0){
+msg+='\n❌ FAILED TOPICS TO REVISE ('+fails.length+'):\n';
+var uniq={};fails.forEach(function(f){if(!uniq[f.def]){uniq[f.def]=1;msg+='- '+f.def+'\n';}});
+}else{msg+='\n🎉 Excellent! All correct!';}
+alert(msg);
+document.getElementById('exam').style.display='none';
+}
+function closeE(){clearInterval(ti);document.getElementById('exam').style.display='none';}
+drawChips();drawList();
+</script>
+</body>
+</html>
