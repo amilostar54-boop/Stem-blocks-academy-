@@ -1,154 +1,66 @@
 <!doctype html>
+<html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>STEM CBC Strands</title>
+<title>STEM Blocks Academy | Kisii-Bomet | Pro CBC Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;800&display=swap" rel="stylesheet">
 <style>
-body{margin:0;padding:8px;font-family:sans-serif;background:#eef2ff}
-h2{background:#1e40af;color:#fff;padding:14px;border-radius:12px;text-align:center}
-.g{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.gr{padding:22px;background:#fff;border:3px solid #1e40af;border-radius:14px;text-align:center;font-weight:900;font-size:22px}
-.card{background:#fff;padding:12px;border-radius:12px;margin:8px 0;box-shadow:0 2px 6px #0001}
-.btn{padding:10px;background:#2563eb;color:#fff;border:none;border-radius:8px;width:100%;font-weight:bold;margin-top:6px}
-.btn2{background:#10b981}
-.btnO{background:#f59e0b;color:#fff;border:none;padding:4px 10px;border-radius:6px}
-.back{background:#64748b;padding:10px;border-radius:8px;color:#fff;border:none;width:100%;font-weight:bold}
-h3{margin:8px 0}
-.small{color:#64748b;font-size:13px}
+*{box-sizing:border-box;font-family:Inter,sans-serif}
+body{margin:0;background:#f8fafc;color:#0f172a}
+header{background:#0f172a;color:#fff;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.logo{font-weight:800;font-size:18px;letter-spacing:.5px}
+.logo span{color:#38bdf8}
+.hero{background:linear-gradient(135deg,#1e40af,#06b6d4);color:#fff;padding:28px 18px;border-radius:0 0 28px 28px;text-align:center}
+.hero h1{margin:0;font-size:26px;line-height:1.2}
+.hero p{opacity:.9;margin:10px 0 14px}
+.btn{border:none;padding:12px 18px;border-radius:12px;font-weight:800;cursor:pointer}
+.btnW{background:#fff;color:#1e40af}
+.btnB{background:#1e40af;color:#fff;width:100%}
+.btnG{background:#10b981;color:#fff;width:100%}
+.btnO{background:#f59e0b;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:14px}
+.cardG{background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:18px;text-align:center;box-shadow:0 4px 12px #0000a;transition:.15s;cursor:pointer}
+.cardG:hover{transform:translateY(-3px);box-shadow:0 8px 20px #0001}
+.cardG b{font-size:22px}
+.badge{background:#dbeafe;color:#1e40af;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:800}
+.wrap{padding:14px}
+.card{background:#fff;border-radius:18px;padding:14px;margin:10px 0;box-shadow:0 2px 10px #0000a;border:1px solid #e2e8f0}
+.strand{border-left:5px solid #1e40af}
+.sub{border-left:5px solid #10b981}
+.topBar{display:flex;gap:8px;margin:10px 0}
+.chip{padding:8px 12px;border-radius:20px;background:#e0e7ff;color:#3730a3;font-weight:700;font-size:12px}
+#examBox{display:none;position:fixed;inset:0;background:#0f172a;z-index:20;padding:14px;overflow:auto;color:#fff}
+.q{background:#1e293b;padding:14px;border-radius:14px;margin:10px 0}
+.opt{display:block;width:100%;text-align:left;padding:10px;margin:6px 0;border-radius:10px;border:1px solid #334155;background:#0f172a;color:#fff}
+.opt:hover{background:#1e40af}
+.timer{position:sticky;top:0;background:#f59e0b;color:#000;padding:10px;border-radius:10px;font-weight:800;text-align:center}
+.calc{position:fixed;right:12px;bottom:12px;background:#f59e0b;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;box-shadow:0 6px 18px #0003;cursor:pointer;z-index:15}
 </style>
-<h2>🎓 STEM Blocks Academy<br>Kisii/Bomet - CBC G1-12</h2>
 
-<div id="lvl0" class="g">
-<div class="gr" onclick="openGrade(1)">G1</div>
-<div class="gr" onclick="openGrade(2)">G2</div>
-<div class="gr" onclick="openGrade(3)">G3</div>
-<div class="gr" onclick="openGrade(4)">G4</div>
-<div class="gr" onclick="openGrade(5)">G5</div>
-<div class="gr" onclick="openGrade(6)">G6</div>
-<div class="gr" onclick="openGrade(7)">G7</div>
-<div class="gr" onclick="openGrade(8)">G8</div>
-<div class="gr" onclick="openGrade(9)">G9</div>
-<div class="gr" onclick="openGrade(10)">G10</div>
-<div class="gr" onclick="openGrade(11)">G11</div>
-<div class="gr" onclick="openGrade(12)">G12</div>
+<header><div class="logo">STEM BLOCKS <span>ACADEMY</span></div><div style="font-size:12px;opacity:.8">KISII • BOMET • PRO</div></header>
+
+<div id="home">
+<div class="hero">
+<h1>CBC G1-12<br>Strands • Substrands • Real Exams</h1>
+<p>Kenya CBC Aligned | KNEC Style | Auto-Mark | Certificate | Pochi Payment</p>
+<button class="btn btnW" onclick="document.getElementById('grades').scrollIntoView({behavior:'smooth'})">🎓 Enter Grades G1-12</button>
 </div>
 
-<div id="lvl1" style="display:none">
-<button class="back" onclick="show(0)">⬅ BACK TO GRADES</button>
-<h3 id="t1"></h3>
-<div id="c1"></div>
+<div class="wrap">
+<div class="topBar"><span class="chip">✅ 12 Grades</span><span class="chip">📚 6 Subjects</span><span class="chip">📌 20 Strands</span><span class="chip">📖 80+ Substrands</span></div>
+
+<div id="grades" class="grid">
+<div class="cardG" onclick="openGrade(1)"><b>G1</b><br><span class="badge">CBC</span></div>
+<div class="cardG" onclick="openGrade(2)"><b>G2</b><br><span class="badge">CBC</span></div>
+<div class="cardG" onclick="openGrade(3)"><b>G3</b><br><span class="badge">CBC</span></div>
+<div class="cardG" onclick="openGrade(4)"><b>G4</b><br><span class="badge">CBC</span></div>
+<div class="cardG" onclick="openGrade(5)"><b>G5</b><br><span class="badge">CBC</span></div>
+<div class="cardG" onclick="openGrade(6)"><b>G6</b><br><span class="badge">CBC</span></div>
+<div class="cardG" onclick="openGrade(7)"><b>G7</b><br><span class="badge">JSS</span></div>
+<div class="cardG" onclick="openGrade(8)"><b>G8</b><br><span class="badge">JSS</span></div>
+<div class="cardG" onclick="openGrade(9)"><b>G9</b><br><span class="badge">JSS</span></div>
+<div class="cardG" onclick="openGrade(10)"><b>G10</b><br><span class="badge">SHS</span></div>
+<div class="cardG" onclick="openGrade(11)"><b>G11</b><br><span class="badge">SHS</span></div>
+<div class="cardG" onclick="openGrade(12)"><b>G12</b><br><span class="badge">SHS</span></div>
 </div>
-
-<div id="lvl2" style="display:none">
-<button class="back" onclick="show(1)">⬅ BACK TO SUBJECTS</button>
-<h3 id="t2"></h3>
-<div id="c2"></div>
-</div>
-
-<div id="lvl3" style="display:none">
-<button class="back" onclick="show(2)">⬅ BACK TO STRANDS</button>
-<h3 id="t3"></h3>
-<div id="c3"></div>
-</div>
-
-<script>
-let curG=0, curSub="", curStrand="";
-const CBC={
-"Math":{
-strands:{
-"Numbers":{"sub":["Whole Numbers","Fractions","Decimals","Percentages","Integers"]},
-"Algebra":{"sub":["Linear Equations","Inequalities","Sequences"]},
-"Geometry":{"sub":["Angles","Triangles","Circles","3D Shapes"]},
-"Measurement":{"sub":["Length, Area, Volume","Time, Speed","Money"]},
-"Data":{"sub":["Statistics","Probability","Graphs"]}
-}},
-"English":{
-strands:{
-"Listening":{"sub":["Pronunciation","Comprehension"]},
-"Reading":{"sub":["Intensive Reading","Fluency","Grammar in Use"]},
-"Writing":{"sub":["Creative Writing","Functional Writing"]},
-"Speaking":{"sub":["Oral Narratives","Debates"]}
-}},
-"Science":{
-strands:{
-"Living Things":{"sub":["Plants","Animals","Human Body"]},
-"Matter":{"sub":["States of Matter","Mixtures","Acids & Bases"]},
-"Energy":{"sub":["Heat, Light, Sound","Electricity","Magnetism"]},
-"Environment":{"sub":["Weather, Climate","Conservation"]}
-}},
-"Bio":{
-strands:{
-"Cell Biology":{"sub":["Cell Structure","Cell Division"]},
-"Genetics":{"sub":["Inheritance","Variation"]},
-"Ecology":{"sub":["Ecosystem","Pollution","Conservation"]}
-}},
-"Chem":{
-strands:{
-"Structure":{"sub":["Atomic Structure","Periodic Table"]},
-"Bonding":{"sub":["Chemical Bonds","Molecules"]},
-"Reactions":{"sub":["Acids, Bases, Salts","Redox"]},
-"Organic":{"sub":["Hydrocarbons","Polymers"]}
-}},
-"Physics":{
-strands:{
-"Mechanics":{"sub":["Motion","Force","Energy","Pressure"]},
-"Waves":{"sub":["Sound Waves","Light Waves"]},
-"Electricity":{"sub":["Current, Voltage","Magnetism"]}
-}}
-};
-
-function show(l){
-document.getElementById('lvl0').style.display=l==0?'grid':'none';
-document.getElementById('lvl1').style.display=l==1?'block':'none';
-document.getElementById('lvl2').style.display=l==2?'block':'none';
-document.getElementById('lvl3').style.display=l==3?'block':'none';
-}
-function calc(){let e=prompt('🧮 Calculator\nType: 12*8 or 100/4'); if(e)try{alert(e+' = '+eval(e))}catch{alert('Error, try like 12*8')}}
-
-function openGrade(n){
-curG=n; show(1);
-document.getElementById('t1').innerText='Grade '+n+' - Subjects (CBC)';
-let subs=n<=6?['Math','English','Science','Kiswahili']:n<=9?['Math','English','Bio','Chem','Physics','Kiswahili']:['Math','Bio','Chem','Physics','English'];
-let h='';
-subs.forEach(s=>{
-let key=s=='Science'?'Science':['Math','English','Bio','Chem','Physics'].includes(s)?s:'Math';
-let sc=CBC[key]?Object.keys(CBC[key].strands).length:4;
-h+='<div class=card><b>'+s+' G'+n+'</b> <span class=small>- '+sc+' Strands - CBC</span> <button class=btnO onclick=calc()>🧮 Calc</button><br><button class="btn btn2" onclick="openSubject(\''+s+'\')">Open → Strands & Substrands</button></div>';
-});
-document.getElementById('c1').innerHTML=h;
-}
-
-function openSubject(sub){
-curSub=sub; show(2);
-let key=['Math','English','Bio','Chem','Physics','Science'].includes(sub)?sub:'Math';
-if(sub=='Kiswahili')key='English';
-document.getElementById('t2').innerText=sub+' G'+curG+' - Strands (CBC)';
-let strands=CBC[key]?CBC[key].strands:{"Strand 1":{sub:["Topic A","Topic B"]}};
-let h='';
-Object.keys(strands).forEach(st=>{
-let cnt=strands[st].sub.length;
-h+='<div class=card><b>📌 '+st+'</b> <span class=small>('+cnt+' Substrands)</span> <button class=btnO onclick=calc()>🧮 Calc</button><br><button class=btn onclick="openStrand(\''+st.replace(/'/g,"\\'")+'\',\''+key+'\')">Open → '+cnt+' Substrands → Exams</button></div>';
-});
-document.getElementById('c2').innerHTML=h;
-}
-
-function openStrand(st,key){
-curStrand=st; show(3);
-document.getElementById('t3').innerText=curSub+' G'+curG+' → '+st+' → Substrands';
-let subs=CBC[key].strands[st].sub;
-let h='';
-subs.forEach(ss=>{
-h+='<div class=card><b>📚 '+ss+'</b><br><span class=small>Strand: '+st+' | '+curSub+' G'+curG+'</span><br><button class=btnO onclick=calc()>🧮 Calc Inside</button> <button class="btn btn2" onclick="doExam(\''+ss.replace(/'/g,"\\'")+'\')">📝 Take Exam + Calc + Auto-Mark</button><button class=btn style=background:#8b5cf6;margin-top:4px onclick="alert(\'📖 Lesson: '+ss+'\\n\\n1. Definition\\n2. Examples\\n3. Practice\\n\\nNext: Video + Notes + CBC Assessment\')">📖 View Lesson Notes</button></div>';
-});
-document.getElementById('c3').innerHTML=h;
-}
-
-function doExam(topic){
-let q=curSub=='Math'?'Q: 12 × 8 = ?':'Q: What is main idea of '+topic+'?';
-let a=prompt('📝 EXAM - '+topic+' (G'+curG+')\n\n'+q+'\n\nUse 🧮 Calc button if Math!\n\nType your answer:');
-if(a!=null){
-if(curSub=='Math'&&a.trim()=='96'){alert('✅ CORRECT! 12×8=96\n\nScore: 10/10\n\nNext: Substrand '+topic+' Completed!');}
-else if(a.trim()!=''){alert('✅ Submitted: '+a+'\n\nTeacher will mark!\n\nSubstrand: '+topic+'\nGrade: '+curG+'\n\nNext: Auto-mark + Progress');}
-calc();
-}
-}
-  </script>
+                                                                 </div>
