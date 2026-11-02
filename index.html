@@ -1,3 +1,69 @@
-<!doctype html><html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>STEM Blocks Pro</title><style>*{box-sizing:border-box;font-family:sans-serif}body{margin:0;background:#f8fafc}header{background:#0f172a;color:#fff;padding:14px;display:flex;justify-content:space-between} .logo{font-weight:900} .logo span{color:#38bdf8} .hero{background:linear-gradient(135deg,#1e40af,#06b6d4);color:#fff;padding:24px;text-align:center;border-radius:0 0 24px 24px} .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:12px} .g{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:16px;text-align:center;box-shadow:0 4px 10px #0001;font-weight:900} .card{background:#fff;border-radius:14px;padding:12px;margin:8px 0;box-shadow:0 2px 8px #0001;border-left:5px solid #1e40af} .btn{border:none;padding:10px 14px;border-radius:10px;font-weight:800;width:100%;color:#fff;background:#1e40af} .btnG{background:#10b981} .btnO{background:#f59e0b} .back{background:#64748b;padding:10px;border-radius:8px;color:#fff;border:none;width:100%} #exam{position:fixed;inset:0;background:#0f172a;color:#fff;padding:12px;display:none;overflow:auto;z-index:20} .opt{display:block;width:100%;padding:10px;margin:5px 0;border-radius:8px;background:#1e293b;color:#fff;border:1px solid #334155} .timer{background:#f59e0b;color:#000;padding:8px;border-radius:8px;font-weight:900;text-align:center;position:sticky;top:0} .calc{position:fixed;right:10px;bottom:10px;background:#f59e0b;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900}</style><header><div class=logo>STEM BLOCKS <span>ACADEMY</span></div><div style=font-size:11px>KISII BOMET PRO</div></header><div id=h><div class=hero><h1 style=margin:0>CBC G1-12<br>Strands • Substrands • Real Exams</h1><p>KNEC Style • Timer • Auto-Mark • Certificate</p></div><div class=grid id=gr></div></div><div id=l1 style=display:none;padding:12px><button class=back onclick="sh('h')">⬅ Home</button><h2 id=t1></h2><div id=c1></div></div><div id=l2 style=display:none;padding:12px><button class=back onclick="sh('l1')">⬅ Subjects</button><h2 id=t2></h2><div id=c2></div></div><div id=l3 style=display:none;padding:12px><button class=back onclick="sh('l2')">⬅ Strands</button><h2 id=t3></h2><div id=c3></div></div><div class=calc onclick="let e=prompt('🧮 Calc: 12*8');if(e)alert(eval(e))">🧮</div><div id=exam><div class=timer id=tm>20:00</div><h2 id=et></h2><div id=eq></div><button class="btn btnG" onclick="sub()">✅ Submit & Mark</button><button class=back onclick="exam.style.display='none'">❌ Exit</button></div><script>
-let CG=0,CS="",CR="",SC=0,SE=1200,TI=null;const D={Math:{Numbers:{s:["Whole Numbers","Fractions","Decimals"],q:[["25% of 200?","40","50","60","25","B"],["LCM 12 & 18?","36","24","18","12","A"],["-5+8?","3","-3","13","-13","A"]]},Algebra:{s:["Linear Eq","Inequalities"],q:[["2x+3=11?","x=4","x=5","x=3","x=6","A"]]},Geometry:{s:["Angles","Triangles","Circles"],q:[["Triangle sum?","180°","90°","360°","270°","A"]]}},English:{Grammar:{s:["Tenses","Comprehension"],q:[["Brave synonym?","courageous","fearful","weak","timid","A"]]}},Science:{Living:{s:["Plants","Animals"],q:[["Photosynthesis?","Sunlight","Dark","O2","N2","A"]]}},Bio:{Cell:{s:["Cell"],q:[["Powerhouse?","Mitochondria","Nucleus","Ribosome","Chloro","A"]]}}};function sh(id){h.style.display=id=='h'?'block':'none';l1.style.display=id=='l1'?'block':'none';l2.style.display=id=='l2'?'block':'none';l3.style.display=id=='l3'?'block':'none'}let gg='';for(let i=1;i<=12;i++){gg+=`<div class=g onclick="og(${i})">G${i}<br><small style=font-size:10px>${i<=6?'CBC':i<=9?'JSS':'SHS'} • Real Exams</small></div>`}gr.innerHTML=gg;function og(n){CG=n;sh('l1');t1.innerText='Grade '+n+' - Subjects';let ss=n<=6?['Math','English','Science']:['Math','English','Bio','Chem','Physics'];let hh='';ss.forEach(s=>{hh+=`<div class=card><b>📘 ${s} G${n}</b> - ${D[s]?Object.keys(D[s]).length:3} Strands<br><button class=btn onclick="os('${s}')">Open Strands →</button></div>`});c1.innerHTML=hh}function os(s){CS=s;sh('l2');t2.innerText=s+' G'+CG+' - Strands';let k=D[s]?s:'Math';let st=D[k];let hh='';Object.keys(st).forEach(x=>{hh+=`<div class=card><b>📌 ${x}</b> - ${st[x].s.length} Substrands<br><button class=btn onclick="otr('${x}')">View Substrands → Exam</button></div>`});c2.innerHTML=hh}function otr(r){CR=r;sh('l3');t3.innerText=CS+' G'+CG+' → '+r+' → Substrands';let k=D[CS]?CS:'Math';let subs=D[k][r].s;let hh='';subs.forEach(x=>{hh+=`<div class=card style=border-left-color:#10b981><b>📚 ${x}</b><br><button class=btn onclick="stEx('${x}')">📝 Real Exam - ${x} (Timer)</button><button class="btn btnG" style=margin-top:5px onclick="alert('Lesson: ${x} - Pro Notes Coming')">📖 Pro Lesson</button></div>`});c3.innerHTML=hh}function stEx(ss){exam.style.display='block';et.innerText='REAL EXAM: '+CS+' G'+CG+' | '+CR+' | '+ss;let k=D[CS]?CS:'Math';let qs=D[k][CR].q;let h='';SC=0;qs.forEach((q,i)=>{h+=`<div style=background:#1e293b;padding:12px;border-radius:10px;margin:8px 0><b>Q${i+1}. ${q[0]}</b><br>`+[1,2,3,4].map(j=>`<button class=opt onclick="pk(this,'${q[5]}','${String.fromCharCode(64+j)}')">${String.fromCharCode(64+j)}. ${q[j]}</button>`).join('')+`</div>`});eq.innerHTML=h;SE=1200;clearInterval(TI);TI=setInterval(()=>{SE--;let m=Math.floor(SE/60),s=SE%60;tm.innerText='⏱ '+m+':'+(s<10?'0':'')+s+' - '+ss+' Exam';if(SE<=0)sub()},1000)}function pk(e,a,c){e.style.background=c==a?'#10b981':'#ef4444';e.parentElement.querySelectorAll('.opt').forEach(b=>b.disabled=true);if(c==a)SC++}function sub(){clearInterval(TI);let t=document.querySelectorAll('#eq > div').length;let p=Math.round(SC/t*100);alert(`RESULTS\\nExam: ${CR}\\nScore: ${SC}/${t}\\n${p}% - ${p>=80?'A EXCELLENT':p>=60?'B GOOD':'RETAKE'}\\nCertificate Generated!`);exam.style.display='none';sh('h')}
-</script>
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STEM Made Familiar - Clone</title>
+<style>
+*{box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
+body{margin:0;background:#f3f6fb;color:#0f172a;padding-bottom:90px}
+header{background:#0b1e3a;color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.logo{display:flex;align-items:center;gap:8px;font-weight:900}
+.logo span{color:#f9c63a}
+.logo small{display:block;font-weight:400;font-size:11px;opacity:.8;margin-top:-2px}
+.card{background:#fff;border-radius:18px;padding:18px;margin:14px 14px 0;box-shadow:0 4px 14px #0001;border:1px solid #eef2f7}
+.icon{width:52px;height:52px;background:#fff2e0;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px}
+.badge{background:#dbeafe;color:#1d4ed8;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:800;display:inline-block;margin:10px 0}
+.meta{color:#64748b;font-size:13px;margin:6px 0;display:flex;gap:14px}
+.btnB{width:100%;padding:12px;border-radius:12px;border:1px solid #e2e8f0;background:#fff;font-weight:800;margin-top:12px}
+.title{font-weight:900;font-size:16px;line-height:1.3;margin:10px 0 0}
+.grades{display:flex;gap:8px;overflow:auto;padding:12px 14px}
+.chip{white-space:nowrap;padding:8px 14px;border-radius:20px;background:#e0e7ff;color:#1e40af;font-weight:800;font-size:13px;border:none}
+.chip.active{background:#0b1e3a;color:#fff}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e2e8f0;display:flex;justify-content:space-around;padding:8px 0}
+.btm{border:none;background:none;font-size:12px;font-weight:700;color:#64748b;text-align:center}
+.btm.active{color:#1e40af}
+.fab{position:fixed;bottom:90px;right:16px;display:flex;gap:8px}
+.fbtn{background:#0f172a;color:#fff;border:none;padding:12px 18px;border-radius:28px;font-weight:800;display:flex;gap:6px;align-items:center;box-shadow:0 6px 16px #0003}
+#exam{position:fixed;inset:0;background:#0b1e3a;color:#fff;padding:14px;display:none;z-index:20;overflow:auto}
+.opt{width:100%;text-align:left;padding:12px;margin:6px 0;border-radius:10px;border:1px solid #334155;background:#132a52;color:#fff}
+.calc{position:fixed;right:14px;bottom:90px;background:#f59e0b;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;z-index:15}
+</style>
+
+<header>
+<div class="logo">🎓 <div>STEM <span>Made Familiar</span><small>Learn Today, Lead Tomorrow</small></div></div>
+<div style="display:flex;gap:14px;font-size:22px">🔔 ☰</div>
+</header>
+
+<div class="grades" id="gradeFilter">
+<button class="chip active" onclick="filterG('All',this)">All</button>
+<button class="chip" onclick="filterG('1',this)">G1</button>
+<button class="chip" onclick="filterG('2',this)">G2</button>
+<button class="chip" onclick="filterG('7',this)">G7</button>
+<button class="chip" onclick="filterG('8',this)">G8</button>
+<button class="chip" onclick="filterG('9',this)">G9</button>
+<button class="chip" onclick="filterG('10',this)">G10</button>
+<button class="chip" onclick="filterG('12',this)">G12</button>
+</div>
+
+<div id="list"></div>
+
+<div class="calc" onclick="let e=prompt('🧮 Calculator: 12*8');if(e)alert(eval(e))">🧮</div>
+
+<div class="bottom">
+<button class="btm active">⏱<br>Exams</button>
+<button class="btm">👤<br>Account</button>
+<button class="btm">📚<br>Strands</button>
+<button class="btm">🏆<br>Leaderboard</button>
+</div>
+
+<div id="exam">
+<div style="background:#f59e0b;color:#000;padding:10px;border-radius:10px;font-weight:900;text-align:center;position:sticky;top:0" id="tm">⏱ 40:00 - Real Exam</div>
+<h2 id="et"></h2>
+<p id="em" style="opacity:.8;font-size:13px"></p>
+<div id="eq"></div>
+<button style="width:100%;padding:14px;background:#10b981;color:#fff;border:none;border-radius:12px;font-weight:900;margin-top:10px" onclick="sub()">✅ Submit & See Results</button>
+<button style="width:100%;padding:12px;background:#334155;color:#fff;border:none;border-radius:12px;margin-top:8px" onclick="document.getElementById('exam').style.display='none'">❌ Exit</button>
+</div>
+
+<script>
+let EXAMS=[
+{t:"INT SCI PAPER 2 KJSEA MUST COME QUESTIONS",sub:"Integrated Science",g:"9",time:"40m",qs:"60 questions",parts
