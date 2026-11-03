@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STEM Blocks Academy - YDALTD</title>
+<style>
+*{box-sizing:border-box;font-family:sans-serif}
+body{margin:0;background:#f8fafc;padding-bottom:90px}
+header{background:#0b1e3a;color:#fff;padding:12px;display:flex;gap:10px;align-items:center;position:sticky;top:0;z-index:10}
+.logo{width:44px;height:44px;border-radius:50%;background:#fff;padding:2px;border:2px solid #f9c63a}
+.hero{margin:12px;background:#fffbe6;padding:12px;border-radius:16px;border:1px solid #f9c63a}
+.stat{display:inline-block;background:#0b1e3a;color:#fff;padding:8px 10px;border-radius:10px;margin:3px;cursor:pointer;text-align:center;min-width:60px}
+.stat b{color:#f9c63a;display:block}
+.chips{padding:10px;display:flex;gap:6px;overflow:auto}
+.chip{padding:8px 12px;border-radius:20px;border:1px solid #ddd;background:#fff;cursor:pointer;white-space:nowrap;font-size:13px}
+.chip.on{background:#0b1e3a;color:#fff;border-color:#f9c63a}
+.card{background:#fff;margin:10px;padding:12px;border-radius:14px;border:1px solid #eee;position:relative}
+.badge{padding:4px 8px;border-radius:12px;font-size:10px;font-weight:800}
+.b-green{background:#dcfce7;color:#15803d}.b-blue{background:#dbeafe;color:#1d4ed8}.b-yellow{background:#fef08a;color:#854d0e}
+.btn{width:100%;padding:11px;background:#0b1e3a;color:#fff;border:none;border-radius:10px;margin-top:8px;font-weight:800;cursor:pointer}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:6px;border-top:1px solid #ddd;z-index:50}
+.btm{border:none;background:none;font-size:11px;color:#94a3b8;padding:6px 12px;border-radius:10px;cursor:pointer}
+.btm.on{background:#fef08a;color:#0b1e3a;border:1px solid #f9c63a}
+.tab{display:none}.tab.on{display:block}
+#exam{position:fixed;inset:0;background:#0b1e3a;color:#fff;padding:12px;display:none;z-index:99;overflow:auto}
+.opt{width:100%;padding:10px;margin:5px 0;background:#132a52;color:#fff;border:1px solid #1e3a5f;border-radius:8px;text-align:left;cursor:pointer}
+.opt.ok{background:#10b981!important}.opt.bad{background:#ef4444!important}
+</style>
+</head>
+<body>
+<header>
+<img class="logo" src="IMG-20261102-WA7822.jpg">
+<div><b>STEM <span style="color:#f9c63a">BLOCKS</span></b><br><small>G1-G12 • 126 Exams • YDALTD</small></div>
+</header>
+
+<div id="tab-exams" class="tab on">
+<div class="hero">
+<b>🚀 ALL CBC Subjects</b><br><small>126 exams - Tap boxes!</small>
+<div style="margin-top:8px">
+<div class="stat" onclick="setG('All')"><b>126</b>All</div>
+<div class="stat" onclick="document.getElementById('chips').scrollIntoView({behavior:'smooth'})"><b>G1-G12</b>Classes</div>
+<div class="stat" onclick="switchTab('strands')"><b>13+</b>Subjects</div>
+<div class="stat" onclick="switchTab('leader')"><b>4.9★</b>Rating</div>
+</div>
+</div>
+<div class="chips" id="chips"></div>
+<div id="list">Loading 126 exams...</div>
+<div style="margin:12px;padding:14px;background:#0b1e3a;color:#fff;border-radius:14px;text-align:center;border:2px solid #f9c63a">
+<b>⚡ POWERED BY <span style="color:#f9c63a">YDALTD</span></b><br><small>Kisii & Bomet, Kenya 🇰🇪 © 2026</small>
+</div>
+</div>
+
+<div id="tab-leader" class="tab">
+<div class="card">
+<h3>🏆 Leaderboard - Clickable!</h3>
+<div id="leaderList">Loading...</div>
+<button class="btn" onclick="switchTab('exams')">← Back to Exams</button>
+</div>
+</div>
+
+<div id="tab-strands" class="tab">
+<div class="card">
+<h3>📚 13+ Subjects - Clickable!</h3>
+<div id="strandList">Loading...</div>
+<button class="btn" onclick="switchTab('exams')">← Back</button>
+</div>
+</div>
+
+<div id="tab-account" class="tab">
+<div class="card">
+<h3>👤 Account - Clickable!</h3>
+<p>Done: <b id="doneCount">0</b></p>
+<p>Last: <b id="lastScore">-</b> (<span id="lastPerc">-</span>)</p>
+<button class="btn" onclick="switchTab('exams')">Go Exams →</button>
+<div style="margin-top:12px;padding:12px;background:#0b1e3a;color:#fff;border-radius:10px;text-align:center"><b style="color:#f9c63a">YDALTD</b><br><small>Young Development Project</small></div>
+</div>
+</div>
+
+<div class="bottom">
+<button class="btm on" id="btm-exams" onclick="switchTab('exams')">⏱<br>Exams</button>
+<button class="btm" id="btm-leader" onclick="switchTab('leader')">📊<br>Leader</button>
+<button class="btm" id="btm-strands" onclick="switchTab('strands')">📚<br>Strands</button>
+<button class="btm" id="btm-account" onclick="switchTab('account')">👤<br>Account</button>
+</div>
+
+<div id="exam">
+<div style="background:#f9c63a;color:#000;padding:8px;border-radius:8px;text-align:center;font-weight:800;display:flex;justify-content:space-between" id="tm"><span>⏱ 40:00</span><span id="prog">0/10</span></div>
+<h3 id="et"></h3><div id="eq"></div>
+<button style="width:100%;padding:12px;background:#10b981;color:#fff;border:none;border-radius:10px;margin-top:10px" onclick="sub()">✅ Submit</button>
+<button style="width:100%;padding:10px;background:#333;color:#fff;border:none;border-radius:10px;margin-top:6px" onclick="closeE()">❌ Exit</button>
+</div>
+
+<script>
+var EX=[];
+function addEx(g,code,name,subj,key,ribbon){
+var b=g>=12?'KCSE':g>=10?'F'+(g-9):'G'+g;
+var c=code.includes('MATH')?'b-green':code.includes('ENG')||code.includes('BIO')||code.includes('SCI')?'b-blue':'b-yellow';
+EX.push({t:'G'+g+' '+code+' - '+name,s:subj,g:''+g,b:b,c:c,tm:'40m',qs:10,key:key,ribbon:ribbon||''});
+}
+for(var g=1;g<=3;g++){
+addEx(g,'MATH','Numbers','Math','math');
+addEx(g,'ENG','Reading','English','eng');
+addEx(g,'KISW','Kusoma','Kiswahili','eng');
+addEx(g,'ENV','Environmental','Environmental','sci');
+addEx(g,'CRE','Religious','CRE','eng');
+addEx(g,'HYG','Hygiene','Hygiene','sci');
+addEx(g,'ART','Creative','Creative','sci');
+addEx(g,'IND','Indigenous','Indigenous','eng');
+}
+for(var g=4;g<=6;g++){
+['MATH','ENG','KISW','SCITECH','SST','AGRI','CRE','HSCI','CART','PHE'].forEach(function(code){
+var subj=code=='MATH'?'Math':code=='ENG'?'English':code=='KISW'?'Kiswahili':code;
+addEx(g,code,subj,subj,code=='MATH'?'math':'eng');
+});
+}
+for(var g=7;g<=9;g++){
+var rib=g==9?'HOT':g==7?'LIVE':'';
+['MATH','ENG','KISW','INSCI','PRETECH','AGRI','SST','CRE','BUS','LIFE','SPORT','HEALTH'].forEach(function(code){
+addEx(g,code,code,code,'math',rib);
+});
+}
+for(var g=10;g<=12;g++){
+var rib=g==12?'KCSE':'';
+['MATH','ENG','KISW','BIO','CHEM','PHY','GEO','HIST','CRE','BUS','AGRI','COMP'].forEach(function(code){
+addEx(g,code,code,code,'math',rib);
+});
+}
+
+var Q={
+math:[
+{q:'25% of 200?',o:['25','50','40','60'],a:1},
+{q:'12x8?',o:['84','96','88','108'],a:1},
+{q:'Area 8x5?',o:['13','40','20','35'],a:1},
+{q:'sqrt 64?',o:['6','8','7','9'],a:1},
+{q:'3+5x2?',o:['13','16','11','10'],a:0},
+{q:'1/2 of 100?',o:['25','50','75','20'],a:1},
+{q:'10^2?',o:['20','100','10','1000'],a:1},
+{q:'15-7?',o:['7','8','9','6'],a:1},
+{q:'2x2x2?',o:['4','6','8','2'],a:2},
+{q:'100/4?',o:['20','25','30','40'],a:1}
+],
+eng:[
+{q:'First book Bible?',o:['Exodus','Genesis','Matthew','Psalms'],a:1},
+{q:'Forgive how many?',o:['Never','70x7','Revenge','Once'],a:1},
+{q:'Noun is?',o:['Action','Name','Describe','Join'],a:1},
+{q:'Past go?',o:['goed','went','goes','gone'],a:1}
+],
+sci:[
+{q:'Salt+water separation?',o:['Filter','Evaporation','Sieving','Decant'],a:1},
+{q:'Plant food?',o:['Photosynthesis','Respiration','Transpiration','Digestion'],a:0}
+]
+};
+
+var curG='All',cur=null,curQs=[],sc=0,answered=0,sec=0,ti=null;
+
+function switchTab(n){
+document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on')});
+document.querySelectorAll('.btm').forEach(function(b){b.classList.remove('on')});
+document.getElementById('tab-'+n).classList.add('on');
+document.getElementById('btm-'+n).classList.add('on');
+if(n=='leader')drawLeader();
+if(n=='strands')drawStrands();
+if(n=='account')drawAccount();
+window.scrollTo(0,0);
+}
+
+function drawChips(){
+var gs=['All','G1','G2','G3','G4','G5','G6','G7','G8','G9','G10','G11','G12'];
+var h='';
+gs.forEach(function(g){
+var on=curG==g?'on':'';
+h+='<button class="chip '+on+'" onclick="setG(\''+g+'\')">'+g+'</button>';
+});
+document.getElementById('chips').innerHTML=h;
+}
+function setG(g){
+curG=g;
+drawChips();
+drawList();
+}
+function drawList(){
+var h='';
+EX.forEach(function(e,i){
+if(curG!='All' && ('G'+e.g)!=curG)return;
+h+='<div class="card">';
+if(e.ribbon)h+='<div style="position:absolute;top:8px;right:-26px;background:#ef4444;color:#fff;padding:2px 30px;font-size:9px;font-weight:800;transform:rotate(35deg)">'+e.ribbon+'</div>';
+h+='<b>'+e.t+'</b><br><small>'+e.s+' - '+e.b+'</small> <span class="badge '+e.c+'">'+e.b+'</span><br>';
+h+='<button class="btn" onclick="openE('+i+')">▶ Start Pro Exam - CLICKABLE!</button></div>';
+});
+if(!h)h='<div class="card">No exams for '+curG+'</div>';
+document.getElementById('list').innerHTML=h;
+}
+function drawLeader(){
+var ls=localStorage.getItem('lastScore')||'0/10';
+var lp=localStorage.getItem('lastPerc')||'0%';
+var h='<div style="padding:10px;border-bottom:1px solid #eee">🥇 Brian Kisii - 9/10 (90%)</div>';
+h+='<div style="padding:10px;border-bottom:1px solid #eee">🥈 Faith Bomet - 8/10 (80%)</div>';
+h+='<div style="padding:10px;background:#fef08a;border-radius:8px">⭐ You - '+ls+' ('+lp+') - CLICKABLE!</div>';
+document.getElementById('leaderList').innerHTML=h;
+}
+function drawStrands(){
+var c={};
+EX.forEach(function(e){c[e.s]=(c[e.s]||0)+1});
+var h='';
+for(var k in c){
+h+='<div style="padding:12px;background:#fffbe6;border-radius:10px;margin:6px;border-left:4px solid #f9c63a;cursor:pointer" onclick="switchTab(\'exams\');setG(\'All\')"><b>'+k+'</b> - '+c[k]+' exams - CLICKABLE!</div>';
+}
+document.getElementById('strandList').innerHTML=h;
+}
+function drawAccount(){
+document.getElementById('doneCount').innerText=localStorage.getItem('doneCount')||0;
+document.getElementById('lastScore').innerText=localStorage.getItem('lastScore')||'-';
+document.getElementById('lastPerc').innerText=localStorage.getItem('lastPerc')||'-';
+}
+function openE(i){
+cur=EX[i];
+document.getElementById('exam').style.display='block';
+document.getElementById('et').innerText=cur.t;
+var key=cur.key=='math'?'math':cur.key=='eng'?'eng':'sci';
+curQs=Q[key];
+sc=0;answered=0;
+var hh='';
+curQs.forEach(function(q,idx){
+hh+='<div style="background:#102a52;padding:10px;margin:8px 0;border-radius:10px"><b>Q'+(idx+1)+'. '+q.q+'</b><br>';
+q.o.forEach(function(op,j){
+hh+='<button class="opt" id="q'+idx+'_'+j+'" onclick="pick('+idx+','+j+','+q.a+')">'+String.fromCharCode(65+j)+'. '+op+'</button>';
+});
+hh+='</div>';
+});
+document.getElementById('eq').innerHTML=hh;
+sec=40*60;
+clearInterval(ti);
+ti=setInterval(function(){
+sec--;
+var m=Math.floor(sec/60);
+var s=sec%60;
+document.getElementById('tm').innerHTML='<span>⏱ '+m+':'+(s<10?'0':'')+s+'</span><span id="prog">✓ '+answered+'/'+curQs.length+'</span>';
+if(sec<=0)sub();
+},1000);
+}
+function pick(qi,ch,co){
+for(var k=0;k<4;k++){
+var b=document.getElementById('q'+qi+'_'+k);
+if(b)b.disabled=true;
+}
+var cb=document.getElementById('q'+qi+'_'+ch);
+var rb=document.getElementById('q'+qi+'_'+co);
+if(ch==co){cb.classList.add('ok');sc++;}else{cb.classList.add('bad');rb.classList.add('ok');}
+answered++;
+document.getElementById('prog').innerText='✓ '+answered+'/'+curQs.length;
+}
+function sub(){
+clearInterval(ti);
+var tot=curQs.length;
+var perc=Math.round(sc/tot*100);
+localStorage.setItem('lastScore',sc+'/'+tot);
+localStorage.setItem('lastPerc',perc+'%');
+var done=parseInt(localStorage.getItem('doneCount')||0)+1;
+localStorage.setItem('doneCount',done);
+alert('Score: '+sc+'/'+tot+' ('+perc+'%)');
+document.getElementById('exam').style.display='none';
+switchTab('leader');
+}
+function closeE(){
+clearInterval(ti);
+document.getElementById('exam').style.display='none';
+}
+drawChips();
+drawList();
+console.log('126 exams loaded - '+EX.length);
+</script>
+</body>
+  </html>
